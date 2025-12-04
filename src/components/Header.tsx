@@ -9,15 +9,20 @@ export default function Header() {
 
     const handleLogout = () => {
         logout();
+        setOpen(false); // fermer le menu mobile
         navigate("/login");
     };
 
+    const closeMenu = () => setOpen(false);
+
     return (
         <header
-            className="bg-gradient-to-r from-emerald-900 via-emerald-800 to-emerald-900 text-amber-100 shadow-[0_4px_0_rgba(0,0,0,0.45)] border-b border-amber-700/40">
+            className="fixed top-0 left-0 right-0 z-40 bg-gradient-to-r from-emerald-900 via-emerald-800 to-emerald-900 text-amber-100 shadow-[0_4px_0_rgba(0,0,0,0.45)] border-b border-amber-700/40"
+        >
             <div className="max-w-6xl mx-auto flex items-center justify-between px-4 py-3 md:py-4">
                 <Link
                     to="/"
+                    onClick={closeMenu}
                     className="flex items-center gap-3 text-2xl md:text-3xl font-extrabold tracking-wide"
                 >
           <span className="inline-flex items-center gap-2">
@@ -36,18 +41,22 @@ export default function Header() {
                     className="hidden md:flex items-center gap-5"
                     aria-label="Navigation principale"
                 >
-                    {logged && <NavItem to="/boxes" label="Mes boîtes"/>}
-                    {logged && <NavItem to="/trades" label="Mes échanges"/>}
+                    {logged && <NavItem to="/boxes" label="Mes boîtes" onClick={closeMenu} />}
+                    {logged && <NavItem to="/trades" label="Mes échanges" onClick={closeMenu} />}
                     {logged && (
-                        <NavItem to="/trainers" label="Chercher un·e Dresseur·euse"/>
+                        <NavItem
+                            to="/trainers"
+                            label="Chercher un·e Dresseur·euse"
+                            onClick={closeMenu}
+                        />
                     )}
-                    {logged && <NavItem to="/pokemon" label="Chercher un Pokémon"/>}
-                    {logged && <NavItem to="/profile" label="Profil"/>}
+                    {logged && <NavItem to="/pokemon" label="Chercher un Pokémon" onClick={closeMenu} />}
+                    {logged && <NavItem to="/profile" label="Profil" onClick={closeMenu} />}
 
-                    {!logged && <NavItem to="/login" label="Connexion"/>}
-                    {!logged && <NavItem to="/signup" label="Inscription"/>}
+                    {!logged && <NavItem to="/login" label="Connexion" onClick={closeMenu} />}
+                    {!logged && <NavItem to="/signup" label="Inscription" onClick={closeMenu} />}
 
-                    <NavItem to="/about" label="À propos"/>
+                    <NavItem to="/about" label="À propos" onClick={closeMenu} />
 
                     {logged && (
                         <button
@@ -84,23 +93,42 @@ export default function Header() {
                 </button>
             </div>
 
+            {/* Overlay pleine largeur, en surcouche */}
             <nav
                 id="mobile-menu"
-                className={`md:hidden bg-emerald-950/95 border-t border-amber-700/40 overflow-hidden transition-all duration-300 ${
+                className={`md:hidden fixed top-[64px] left-0 right-0 z-30 bg-emerald-950/95 border-t border-amber-700/40 overflow-hidden transition-all duration-300 ${
                     open ? "max-h-96" : "max-h-0"
                 }`}
                 aria-label="Navigation principale mobile"
             >
-                {logged && <MobileNavItem to="/boxes" label="Mes boîtes"/>}
-                {logged && <MobileNavItem to="/trades" label="Mes échanges"/>}
                 {logged && (
-                    <MobileNavItem to="/trainers" label="Chercher un·e Dresseur·euse"/>
+                    <MobileNavItem to="/boxes" label="Mes boîtes" onClick={closeMenu} />
                 )}
-                {logged && <MobileNavItem to="/pokemon" label="Chercher un Pokémon"/>}
-                {logged && <MobileNavItem to="/profile" label="Profil"/>}
+                {logged && (
+                    <MobileNavItem to="/trades" label="Mes échanges" onClick={closeMenu} />
+                )}
+                {logged && (
+                    <MobileNavItem
+                        to="/trainers"
+                        label="Chercher un·e Dresseur·euse"
+                        onClick={closeMenu}
+                    />
+                )}
+                {logged && (
+                    <MobileNavItem to="/pokemon" label="Chercher un Pokémon" onClick={closeMenu} />
+                )}
+                {logged && (
+                    <MobileNavItem to="/profile" label="Profil" onClick={closeMenu} />
+                )}
 
-                {!logged && <MobileNavItem to="/login" label="Connexion"/>}
-                {!logged && <MobileNavItem to="/signup" label="Inscription"/>}
+                {!logged && (
+                    <MobileNavItem to="/login" label="Connexion" onClick={closeMenu} />
+                )}
+                {!logged && (
+                    <MobileNavItem to="/signup" label="Inscription" onClick={closeMenu} />
+                )}
+
+                <MobileNavItem to="/about" label="À propos" onClick={closeMenu} />
 
                 {logged && (
                     <button
@@ -115,10 +143,19 @@ export default function Header() {
     );
 }
 
-function NavItem({to, label}: { to: string; label: string }) {
+function NavItem({
+                     to,
+                     label,
+                     onClick,
+                 }: {
+    to: string;
+    label: string;
+    onClick?: () => void;
+}) {
     return (
         <NavLink
             to={to}
+            onClick={onClick}
             className={({isActive}) =>
                 `text-sm md:text-base font-semibold px-3 py-1.5 rounded-full border transition 
         ${
@@ -133,10 +170,19 @@ function NavItem({to, label}: { to: string; label: string }) {
     );
 }
 
-function MobileNavItem({to, label}: { to: string; label: string }) {
+function MobileNavItem({
+                           to,
+                           label,
+                           onClick,
+                       }: {
+    to: string;
+    label: string;
+    onClick?: () => void;
+}) {
     return (
         <NavLink
             to={to}
+            onClick={onClick}
             className={({isActive}) =>
                 `block px-4 py-3 text-base border-b border-emerald-900 transition 
         ${

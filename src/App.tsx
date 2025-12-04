@@ -9,6 +9,8 @@ import BoxDetailPage from "./pages/box/BoxDetailPage.tsx";
 import AddPokemonPage from "./pages/pokemons/AddPokemonPage.tsx";
 import PokemonDetailPage from "./pages/pokemons/PokemonDetail.tsx";
 import AboutPage from "./pages/AboutPage.tsx";
+import PokemonSearchPage from "./pages/pokemons/PokemonSearchPage.tsx";
+import Footer from "./components/Footer.tsx";
 
 function App() {
     return (
@@ -30,9 +32,13 @@ function App() {
 
                 <Route path="/boxes/:boxId/add-pokemon" element={<AddPokemonPage/>}/>
                 <Route path="/pokemon/:pokemonId" element={<PokemonDetailPage/>}/>
+                <Route path="/pokemon" element={<PokemonSearchPage />} />
 
 
-            </Routes></>
+
+            </Routes>
+            <Footer/>
+        </>
     );
 }
 

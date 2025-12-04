@@ -1,6 +1,6 @@
 ﻿export default function HomePage() {
     return (
-        <main className="min-h-screen bg-black flex items-center justify-center px-4">
+        <main className="min-h-[calc(100vh-45px)] bg-black flex items-center justify-center px-4">
             <section
                 aria-labelledby="home-title"
                 className="w-full max-w-3xl flex flex-col items-center gap-6"
