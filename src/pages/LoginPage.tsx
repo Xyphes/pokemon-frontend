@@ -1,7 +1,6 @@
-﻿// LoginPage.tsx
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useAuth } from "../context/AuthContext";   // ⬅️ IMPORTANT !
+﻿import { useState, useRef, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
 interface LoginForm {
     login: string;
@@ -10,11 +9,24 @@ interface LoginForm {
 
 export default function LoginPage() {
     const navigate = useNavigate();
-    const { login: loginUser } = useAuth();   // ⬅️ UTILISATION DU CONTEXTE
+    const { login } = useAuth();
 
-    const [form, setForm] = useState<LoginForm>({ login: '', password: '' });
+    const [form, setForm] = useState<LoginForm>({ login: "", password: "" });
     const [error, setError] = useState<string | null>(null);
     const [loading, setLoading] = useState(false);
+
+    const errorRef = useRef<HTMLDivElement>(null);
+    const loginRef = useRef<HTMLInputElement>(null);
+
+    useEffect(() => {
+        loginRef.current?.focus(); // focus automatique sur le premier champ
+    }, []);
+
+    useEffect(() => {
+        if (error) {
+            errorRef.current?.focus(); // focus sur le message d'erreur
+        }
+    }, [error]);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setForm({ ...form, [e.target.name]: e.target.value });
@@ -26,19 +38,16 @@ export default function LoginPage() {
         setLoading(true);
 
         try {
-            const res = await fetch('http://localhost:8000/login', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
+            const res = await fetch("http://localhost:8000/login", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(form),
             });
 
             if (res.status === 200) {
                 const data = await res.json();
-
-                // ⬅️ FIX : UTILISER login() DU CONTEXTE
-                loginUser(data.accessToken);
-
-                navigate('/');
+                login(data.accessToken);
+                navigate("/");
             } else if (res.status === 400) {
                 setError("Les champs sont invalides. Vérifiez votre saisie.");
             } else if (res.status === 401) {
@@ -59,6 +68,7 @@ export default function LoginPage() {
                 onSubmit={handleSubmit}
                 className="w-full max-w-md bg-white p-6 rounded shadow"
                 aria-labelledby="login-title"
+                aria-describedby={error ? "login-error" : undefined}
             >
                 <h1 id="login-title" className="text-2xl font-bold mb-4">
                     Connexion
@@ -66,8 +76,11 @@ export default function LoginPage() {
 
                 {error && (
                     <div
+                        ref={errorRef}
+                        id="login-error"
                         className="mb-4 text-red-700 bg-red-100 p-2 rounded"
                         role="alert"
+                        tabIndex={-1}
                         aria-live="assertive"
                     >
                         {error}
@@ -82,6 +95,7 @@ export default function LoginPage() {
                         type="email"
                         id="login"
                         name="login"
+                        ref={loginRef}
                         value={form.login}
                         onChange={handleChange}
                         required
@@ -110,11 +124,11 @@ export default function LoginPage() {
                     type="submit"
                     disabled={loading}
                     className={`w-full bg-blue-600 text-white py-2 rounded font-semibold hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 ${
-                        loading ? 'opacity-50 cursor-not-allowed' : ''
+                        loading ? "opacity-50 cursor-not-allowed" : ""
                     }`}
                     aria-busy={loading}
                 >
-                    {loading ? 'Connexion...' : 'Se connecter'}
+                    {loading ? "Connexion..." : "Se connecter"}
                 </button>
             </form>
         </main>

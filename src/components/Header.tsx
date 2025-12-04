@@ -9,21 +9,19 @@ export default function Header() {
 
     const handleLogout = () => {
         logout();
-        setOpen(false);   // ⬅️ important !
         navigate("/login");
     };
-
-
-    console.log("Header logged =", logged);
 
     return (
         <header className="bg-gray-900 text-white shadow-lg">
             <div className="max-w-6xl mx-auto flex items-center justify-between px-4 py-4">
+                {/* Logo */}
                 <Link to="/" className="text-2xl font-bold tracking-wide">
                     Pokémon Boxes
                 </Link>
 
-                <nav className="hidden md:flex gap-6">
+                {/* Desktop Nav */}
+                <nav className="hidden md:flex gap-6" aria-label="Navigation principale">
                     {logged && <NavItem to="/boxes" label="Mes boîtes" />}
                     {logged && <NavItem to="/trades" label="Mes échanges" />}
                     {logged && <NavItem to="/trainers" label="Chercher un·e Dresseur·euse" />}
@@ -43,10 +41,12 @@ export default function Header() {
                     )}
                 </nav>
 
+                {/* Burger Button */}
                 <button
                     onClick={() => setOpen(!open)}
                     aria-expanded={open}
-                    aria-label="Menu"
+                    aria-controls="mobile-menu"
+                    aria-label="Menu principal"
                     className="md:hidden flex flex-col justify-center items-center w-10 h-10"
                 >
                     <span
@@ -67,7 +67,10 @@ export default function Header() {
                 </button>
             </div>
 
+            {/* Mobile Nav */}
             <nav
+                id="mobile-menu"
+                role="menu"
                 className={`md:hidden bg-gray-800 overflow-hidden transition-all duration-300 ${
                     open ? "max-h-96" : "max-h-0"
                 }`}
@@ -85,6 +88,7 @@ export default function Header() {
                     <button
                         onClick={handleLogout}
                         className="block px-4 py-4 text-lg w-full text-left hover:text-red-400 transition"
+                        role="menuitem"
                     >
                         Déconnexion
                     </button>
@@ -113,6 +117,7 @@ function MobileNavItem({ to, label }: { to: string; label: string }) {
     return (
         <NavLink
             to={to}
+            role="menuitem"
             className={({ isActive }) =>
                 `block px-4 py-4 text-lg border-b border-gray-700 hover:bg-gray-700 transition ${
                     isActive ? "bg-gray-700 font-semibold text-yellow-400" : ""

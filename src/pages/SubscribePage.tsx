@@ -1,5 +1,4 @@
-﻿// SubscribePage.tsx
-import { useState } from 'react';
+﻿import { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 interface FormData {
@@ -23,6 +22,19 @@ export default function SubscribePage() {
     const [error, setError] = useState<string | null>(null);
     const [loading, setLoading] = useState(false);
 
+    // Ref pour focus automatique sur le premier champ
+    const firstInputRef = useRef<HTMLInputElement>(null);
+    // Ref pour focus sur l'erreur
+    const errorRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        firstInputRef.current?.focus();
+    }, []);
+
+    useEffect(() => {
+        if (error) errorRef.current?.focus();
+    }, [error]);
+
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setForm({ ...form, [e.target.name]: e.target.value });
     };
@@ -31,7 +43,6 @@ export default function SubscribePage() {
         e.preventDefault();
         setError(null);
 
-        // Vérification simple côté front
         const today = new Date().toISOString().split('T')[0];
         if (form.birthDate > today) {
             setError("La date de naissance ne peut pas être dans le futur.");
@@ -47,8 +58,7 @@ export default function SubscribePage() {
             });
 
             if (res.status === 201) {
-                // Utilisateur créé -> redirection
-                navigate('/');
+                navigate('/login');
             } else if (res.status === 400) {
                 setError("Les champs sont invalides. Vérifiez votre saisie.");
             } else if (res.status === 409) {
@@ -69,6 +79,7 @@ export default function SubscribePage() {
                 onSubmit={handleSubmit}
                 className="w-full max-w-md bg-white p-6 rounded shadow"
                 aria-labelledby="subscribe-title"
+                aria-describedby={error ? 'subscribe-error' : undefined}
             >
                 <h1 id="subscribe-title" className="text-2xl font-bold mb-4">
                     Inscription
@@ -76,9 +87,12 @@ export default function SubscribePage() {
 
                 {error && (
                     <div
-                        className="mb-4 text-red-700 bg-red-100 p-2 rounded"
+                        ref={errorRef}
+                        id="subscribe-error"
                         role="alert"
+                        tabIndex={-1} // permet focus clavier
                         aria-live="assertive"
+                        className="mb-4 text-red-700 bg-red-100 p-2 rounded"
                     >
                         {error}
                     </div>
@@ -93,11 +107,12 @@ export default function SubscribePage() {
                         type="text"
                         id="firstName"
                         name="firstName"
+                        ref={firstInputRef}
                         value={form.firstName}
                         onChange={handleChange}
                         required
-                        className="w-full border rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
                         aria-invalid={!!error}
+                        className="w-full border rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
                     />
                 </div>
 
@@ -113,12 +128,12 @@ export default function SubscribePage() {
                         value={form.lastName}
                         onChange={handleChange}
                         required
-                        className="w-full border rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
                         aria-invalid={!!error}
+                        className="w-full border rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
                     />
                 </div>
 
-                {/* Login */}
+                {/* Email / Login */}
                 <div className="mb-4">
                     <label htmlFor="login" className="block font-medium mb-1">
                         Adresse email
@@ -130,8 +145,8 @@ export default function SubscribePage() {
                         value={form.login}
                         onChange={handleChange}
                         required
-                        className="w-full border rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
                         aria-invalid={!!error}
+                        className="w-full border rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
                     />
                 </div>
 
@@ -148,8 +163,8 @@ export default function SubscribePage() {
                         onChange={handleChange}
                         max={new Date().toISOString().split('T')[0]}
                         required
-                        className="w-full border rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
                         aria-invalid={!!error}
+                        className="w-full border rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
                     />
                 </div>
 
@@ -166,8 +181,8 @@ export default function SubscribePage() {
                         onChange={handleChange}
                         required
                         minLength={6}
-                        className="w-full border rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
                         aria-invalid={!!error}
+                        className="w-full border rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
                     />
                 </div>
 
@@ -179,7 +194,7 @@ export default function SubscribePage() {
                     }`}
                     aria-busy={loading}
                 >
-                    {loading ? 'Inscription...' : "S'inscrire"}
+                    {loading ? "Inscription..." : "S'inscrire"}
                 </button>
             </form>
         </main>
