@@ -1,6 +1,6 @@
-﻿import { useEffect, useState } from "react";
-import { useAuth } from "../../context/AuthContext.tsx";
-import { useNavigate } from "react-router-dom";
+﻿import {useEffect, useState} from "react";
+import {useAuth} from "../../context/AuthContext.tsx";
+import {useNavigate} from "react-router-dom";
 
 interface Box {
     id: number;
@@ -8,13 +8,11 @@ interface Box {
 }
 
 export default function BoxesPage() {
-    const { token, trainerId } = useAuth();
+    const {token, trainerId} = useAuth();
     const navigate = useNavigate();
     const [boxes, setBoxes] = useState<Box[]>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
-
-
 
 
     useEffect(() => {
@@ -71,7 +69,8 @@ export default function BoxesPage() {
 
     if (error) {
         return (
-            <main className="min-h-screen p-4 bg-gradient-to-b from-emerald-950 via-emerald-900 to-emerald-800 text-amber-100">
+            <main
+                className="min-h-screen p-4 bg-gradient-to-b from-emerald-950 via-emerald-900 to-emerald-800 text-amber-100">
                 <h1 className="text-3xl font-extrabold mb-4 text-amber-200">
                     Coffres d&apos;Hyrule
                 </h1>
@@ -83,7 +82,8 @@ export default function BoxesPage() {
     }
 
     return (
-        <main className="min-h-screen p-4 bg-gradient-to-b from-emerald-950 via-emerald-900 to-emerald-800 text-amber-100">
+        <main
+            className="min-h-screen p-4 bg-gradient-to-b from-emerald-950 via-emerald-900 to-emerald-800 text-amber-100">
             <div className="max-w-4xl mx-auto">
                 <div className="flex items-center justify-between mb-6">
                     <h1 className="text-3xl font-extrabold text-amber-200">

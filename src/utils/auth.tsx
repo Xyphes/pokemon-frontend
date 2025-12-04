@@ -1,4 +1,4 @@
-﻿import { createContext, useContext, useState, useEffect, type ReactNode } from "react";
+﻿import {createContext, type ReactNode, useContext, useEffect, useState} from "react";
 
 type AuthContextType = {
     logged: boolean;
@@ -8,7 +8,7 @@ type AuthContextType = {
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
-export function AuthProvider({ children }: { children: ReactNode }) {
+export function AuthProvider({children}: { children: ReactNode }) {
     const [logged, setLogged] = useState(false);
 
     useEffect(() => {
@@ -27,7 +27,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     };
 
     return (
-        <AuthContext.Provider value={{ logged, login, logout }}>
+        <AuthContext.Provider value={{logged, login, logout}}>
             {children}
         </AuthContext.Provider>
     );

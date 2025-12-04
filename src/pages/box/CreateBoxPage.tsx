@@ -1,9 +1,9 @@
-﻿import { type FormEvent, useState, useRef, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import { useAuth } from "../../context/AuthContext.tsx";
+﻿import {type FormEvent, useEffect, useRef, useState} from "react";
+import {useNavigate} from "react-router-dom";
+import {useAuth} from "../../context/AuthContext.tsx";
 
 export default function CreateBoxPage() {
-    const { token, trainerId } = useAuth();
+    const {token, trainerId} = useAuth();
     const navigate = useNavigate();
 
     const [name, setName] = useState("");
@@ -45,7 +45,7 @@ export default function CreateBoxPage() {
                         Authorization: `Bearer ${token}`,
                         "Content-Type": "application/json",
                     },
-                    body: JSON.stringify({ name: name.trim() }),
+                    body: JSON.stringify({name: name.trim()}),
                 }
             );
 
@@ -66,7 +66,8 @@ export default function CreateBoxPage() {
     const errorId = error ? "create-box-error" : undefined;
 
     return (
-        <main className="min-h-screen flex items-center justify-center bg-gradient-to-b from-emerald-950 via-emerald-900 to-emerald-800 p-4">
+        <main
+            className="min-h-screen flex items-center justify-center bg-gradient-to-b from-emerald-950 via-emerald-900 to-emerald-800 p-4">
             <form
                 onSubmit={handleSubmit}
                 className="w-full max-w-md bg-emerald-950/95 border-2 border-amber-500 rounded-2xl shadow-[0_0_0_3px_rgba(0,0,0,0.7)] px-6 py-7"

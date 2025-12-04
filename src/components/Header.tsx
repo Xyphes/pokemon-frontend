@@ -1,11 +1,11 @@
-﻿import { Link, NavLink, useNavigate } from "react-router-dom";
-import { useState } from "react";
-import { useAuth } from "../context/AuthContext";
+﻿import {Link, NavLink, useNavigate} from "react-router-dom";
+import {useState} from "react";
+import {useAuth} from "../context/AuthContext";
 
 export default function Header() {
     const [open, setOpen] = useState(false);
     const navigate = useNavigate();
-    const { logged, logout } = useAuth();
+    const {logged, logout} = useAuth();
 
     const handleLogout = () => {
         logout();
@@ -13,7 +13,8 @@ export default function Header() {
     };
 
     return (
-        <header className="bg-gradient-to-r from-emerald-900 via-emerald-800 to-emerald-900 text-amber-100 shadow-[0_4px_0_rgba(0,0,0,0.45)] border-b border-amber-700/40">
+        <header
+            className="bg-gradient-to-r from-emerald-900 via-emerald-800 to-emerald-900 text-amber-100 shadow-[0_4px_0_rgba(0,0,0,0.45)] border-b border-amber-700/40">
             <div className="max-w-6xl mx-auto flex items-center justify-between px-4 py-3 md:py-4">
                 <Link
                     to="/"
@@ -35,16 +36,18 @@ export default function Header() {
                     className="hidden md:flex items-center gap-5"
                     aria-label="Navigation principale"
                 >
-                    {logged && <NavItem to="/boxes" label="Mes boîtes" />}
-                    {logged && <NavItem to="/trades" label="Mes échanges" />}
+                    {logged && <NavItem to="/boxes" label="Mes boîtes"/>}
+                    {logged && <NavItem to="/trades" label="Mes échanges"/>}
                     {logged && (
-                        <NavItem to="/trainers" label="Chercher un·e Dresseur·euse" />
+                        <NavItem to="/trainers" label="Chercher un·e Dresseur·euse"/>
                     )}
-                    {logged && <NavItem to="/pokemon" label="Chercher un Pokémon" />}
-                    {logged && <NavItem to="/profile" label="Profil" />}
+                    {logged && <NavItem to="/pokemon" label="Chercher un Pokémon"/>}
+                    {logged && <NavItem to="/profile" label="Profil"/>}
 
-                    {!logged && <NavItem to="/login" label="Connexion" />}
-                    {!logged && <NavItem to="/signup" label="Inscription" />}
+                    {!logged && <NavItem to="/login" label="Connexion"/>}
+                    {!logged && <NavItem to="/signup" label="Inscription"/>}
+
+                    <NavItem to="/about" label="À propos"/>
 
                     {logged && (
                         <button
@@ -88,16 +91,16 @@ export default function Header() {
                 }`}
                 aria-label="Navigation principale mobile"
             >
-                {logged && <MobileNavItem to="/boxes" label="Mes boîtes" />}
-                {logged && <MobileNavItem to="/trades" label="Mes échanges" />}
+                {logged && <MobileNavItem to="/boxes" label="Mes boîtes"/>}
+                {logged && <MobileNavItem to="/trades" label="Mes échanges"/>}
                 {logged && (
-                    <MobileNavItem to="/trainers" label="Chercher un·e Dresseur·euse" />
+                    <MobileNavItem to="/trainers" label="Chercher un·e Dresseur·euse"/>
                 )}
-                {logged && <MobileNavItem to="/pokemon" label="Chercher un Pokémon" />}
-                {logged && <MobileNavItem to="/profile" label="Profil" />}
+                {logged && <MobileNavItem to="/pokemon" label="Chercher un Pokémon"/>}
+                {logged && <MobileNavItem to="/profile" label="Profil"/>}
 
-                {!logged && <MobileNavItem to="/login" label="Connexion" />}
-                {!logged && <MobileNavItem to="/signup" label="Inscription" />}
+                {!logged && <MobileNavItem to="/login" label="Connexion"/>}
+                {!logged && <MobileNavItem to="/signup" label="Inscription"/>}
 
                 {logged && (
                     <button
@@ -112,11 +115,11 @@ export default function Header() {
     );
 }
 
-function NavItem({ to, label }: { to: string; label: string }) {
+function NavItem({to, label}: { to: string; label: string }) {
     return (
         <NavLink
             to={to}
-            className={({ isActive }) =>
+            className={({isActive}) =>
                 `text-sm md:text-base font-semibold px-3 py-1.5 rounded-full border transition 
         ${
                     isActive
@@ -130,11 +133,11 @@ function NavItem({ to, label }: { to: string; label: string }) {
     );
 }
 
-function MobileNavItem({ to, label }: { to: string; label: string }) {
+function MobileNavItem({to, label}: { to: string; label: string }) {
     return (
         <NavLink
             to={to}
-            className={({ isActive }) =>
+            className={({isActive}) =>
                 `block px-4 py-3 text-base border-b border-emerald-900 transition 
         ${
                     isActive

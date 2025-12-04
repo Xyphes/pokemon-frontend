@@ -1,15 +1,10 @@
-﻿import {
-    type FormEvent,
-    useState,
-    useRef,
-    useEffect,
-} from "react";
-import { useNavigate, useParams } from "react-router-dom";
-import { useAuth } from "../../context/AuthContext";
+﻿import {type FormEvent, useEffect, useRef, useState,} from "react";
+import {useNavigate, useParams} from "react-router-dom";
+import {useAuth} from "../../context/AuthContext";
 
 export default function AddPokemonPage() {
-    const { token } = useAuth();
-    const { boxId } = useParams<{ boxId: string }>();
+    const {token} = useAuth();
+    const {boxId} = useParams<{ boxId: string }>();
     const navigate = useNavigate();
 
     const [species, setSpecies] = useState("");
@@ -99,7 +94,8 @@ export default function AddPokemonPage() {
     const errorId = error ? "add-pokemon-error" : undefined;
 
     return (
-        <main className="min-h-screen flex items-center justify-center bg-gradient-to-b from-emerald-950 via-emerald-900 to-emerald-800 p-4">
+        <main
+            className="min-h-screen flex items-center justify-center bg-gradient-to-b from-emerald-950 via-emerald-900 to-emerald-800 p-4">
             <form
                 onSubmit={handleSubmit}
                 className="w-full max-w-lg bg-emerald-950/95 border-2 border-amber-500 rounded-2xl shadow-[0_0_0_3px_rgba(0,0,0,0.7)] px-6 py-7"

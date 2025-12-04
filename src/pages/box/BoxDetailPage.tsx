@@ -1,6 +1,6 @@
-﻿import { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
-import { useAuth } from "../../context/AuthContext";
+﻿import {useEffect, useState} from "react";
+import {useNavigate, useParams} from "react-router-dom";
+import {useAuth} from "../../context/AuthContext";
 
 interface PokemonInBox {
     id: number;
@@ -18,8 +18,8 @@ interface BoxDetail {
 }
 
 export default function BoxDetailPage() {
-    const { token, trainerId } = useAuth();
-    const { boxId } = useParams<{ boxId: string }>();
+    const {token, trainerId} = useAuth();
+    const {boxId} = useParams<{ boxId: string }>();
     const navigate = useNavigate();
 
     const [box, setBox] = useState<BoxDetail | null>(null);
@@ -73,7 +73,7 @@ export default function BoxDetailPage() {
                 `http://localhost:8000/trainers/${trainerId}/boxes/${box.id}`,
                 {
                     method: "DELETE",
-                    headers: { Authorization: `Bearer ${token}` },
+                    headers: {Authorization: `Bearer ${token}`},
                 }
             );
             if (!res.ok) throw new Error();
@@ -99,7 +99,8 @@ export default function BoxDetailPage() {
 
     if (error || !box) {
         return (
-            <main className="min-h-screen p-4 bg-gradient-to-b from-emerald-950 via-emerald-900 to-emerald-800 text-amber-100">
+            <main
+                className="min-h-screen p-4 bg-gradient-to-b from-emerald-950 via-emerald-900 to-emerald-800 text-amber-100">
                 <h1 className="text-3xl font-extrabold mb-4 text-amber-200">
                     Coffre d&apos;Hyrule
                 </h1>
@@ -118,7 +119,8 @@ export default function BoxDetailPage() {
     }
 
     return (
-        <main className="min-h-screen p-4 bg-gradient-to-b from-emerald-950 via-emerald-900 to-emerald-800 text-amber-100">
+        <main
+            className="min-h-screen p-4 bg-gradient-to-b from-emerald-950 via-emerald-900 to-emerald-800 text-amber-100">
             <div className="max-w-6xl mx-auto space-y-6">
                 {/* Titre + bouton Retour */}
                 <div className="flex items-center justify-between gap-4">
@@ -191,7 +193,7 @@ export default function BoxDetailPage() {
                                                 alt={`Illustration de ${p.species}`}
                                                 className="w-20 h-20 object-contain rounded-lg border-2 border-emerald-600/50 bg-emerald-900/50 p-2"
                                                 onError={(e) => {
-                                                    (e.target as HTMLImageElement).src = "https://via.placeholder.com/80x80/2d5a3a/8b4513?text=?";
+                                                    (e.target as HTMLImageElement).src = "/fallback-pokemon.png";
                                                 }}
                                             />
                                         </div>
@@ -199,7 +201,8 @@ export default function BoxDetailPage() {
                                         {/* Shiny indicator */}
                                         {p.isShiny && (
                                             <div className="flex justify-center mb-2">
-                        <span className="px-2 py-0.5 bg-yellow-400/20 text-yellow-300 text-xs font-bold rounded-full border border-yellow-400/50">
+                        <span
+                            className="px-2 py-0.5 bg-yellow-400/20 text-yellow-300 text-xs font-bold rounded-full border border-yellow-400/50">
                           ✨ Shiny
                         </span>
                                             </div>
@@ -210,14 +213,16 @@ export default function BoxDetailPage() {
                       <span className="font-bold text-lg text-amber-200 truncate">
                         {p.name}
                       </span>
-                                            <span className="text-sm bg-emerald-800/60 px-2 py-1 rounded-full text-amber-300 font-semibold">
+                                            <span
+                                                className="text-sm bg-emerald-800/60 px-2 py-1 rounded-full text-amber-300 font-semibold">
                         Nv {p.level}
                       </span>
                                         </div>
 
                                         {/* Infos détaillées */}
                                         <div className="space-y-1 text-sm text-amber-100/90">
-                                            <p><span className="font-medium text-amber-200">Espèce :</span> {p.species}</p>
+                                            <p><span className="font-medium text-amber-200">Espèce :</span> {p.species}
+                                            </p>
                                             <p>
                                                 <span className="font-medium text-amber-200">Genre :</span>{" "}
                                                 {p.genderTypeCode === "MALE" ? "♂ Mâle" :
@@ -225,7 +230,8 @@ export default function BoxDetailPage() {
                                             </p>
                                             <p>
                                                 <span className="font-medium text-amber-200">Chromatique :</span>{" "}
-                                                <span className={`font-semibold px-1 rounded ${p.isShiny ? 'text-yellow-300' : 'text-amber-300'}`}>
+                                                <span
+                                                    className={`font-semibold px-1 rounded ${p.isShiny ? 'text-yellow-300' : 'text-amber-300'}`}>
                           {p.isShiny ? "Oui ✨" : "Non"}
                         </span>
                                             </p>
