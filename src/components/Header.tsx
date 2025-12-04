@@ -15,16 +15,19 @@ export default function Header() {
     return (
         <header className="bg-gray-900 text-white shadow-lg">
             <div className="max-w-6xl mx-auto flex items-center justify-between px-4 py-4">
-                {/* Logo */}
                 <Link to="/" className="text-2xl font-bold tracking-wide">
                     Pokémon Boxes
                 </Link>
 
-                {/* Desktop Nav */}
-                <nav className="hidden md:flex gap-6" aria-label="Navigation principale">
+                <nav
+                    className="hidden md:flex gap-6"
+                    aria-label="Navigation principale"
+                >
                     {logged && <NavItem to="/boxes" label="Mes boîtes" />}
                     {logged && <NavItem to="/trades" label="Mes échanges" />}
-                    {logged && <NavItem to="/trainers" label="Chercher un·e Dresseur·euse" />}
+                    {logged && (
+                        <NavItem to="/trainers" label="Chercher un·e Dresseur·euse" />
+                    )}
                     {logged && <NavItem to="/pokemon" label="Chercher un Pokémon" />}
                     {logged && <NavItem to="/profile" label="Profil" />}
 
@@ -41,7 +44,6 @@ export default function Header() {
                     )}
                 </nav>
 
-                {/* Burger Button */}
                 <button
                     onClick={() => setOpen(!open)}
                     aria-expanded={open}
@@ -49,35 +51,36 @@ export default function Header() {
                     aria-label="Menu principal"
                     className="md:hidden flex flex-col justify-center items-center w-10 h-10"
                 >
-                    <span
-                        className={`block w-7 h-0.5 bg-white transition-all duration-300 ${
-                            open ? "rotate-45 translate-y-1.5" : ""
-                        }`}
-                    ></span>
+          <span
+              className={`block w-7 h-0.5 bg-white transition-all duration-300 ${
+                  open ? "rotate-45 translate-y-1.5" : ""
+              }`}
+          />
                     <span
                         className={`block w-7 h-0.5 bg-white my-1 transition-all duration-300 ${
                             open ? "opacity-0" : "opacity-100"
                         }`}
-                    ></span>
+                    />
                     <span
                         className={`block w-7 h-0.5 bg-white transition-all duration-300 ${
                             open ? "-rotate-45 -translate-y-1.5" : ""
                         }`}
-                    ></span>
+                    />
                 </button>
             </div>
 
-            {/* Mobile Nav */}
             <nav
                 id="mobile-menu"
-                role="menu"
                 className={`md:hidden bg-gray-800 overflow-hidden transition-all duration-300 ${
                     open ? "max-h-96" : "max-h-0"
                 }`}
+                aria-label="Navigation principale mobile"
             >
                 {logged && <MobileNavItem to="/boxes" label="Mes boîtes" />}
                 {logged && <MobileNavItem to="/trades" label="Mes échanges" />}
-                {logged && <MobileNavItem to="/trainers" label="Chercher un·e Dresseur·euse" />}
+                {logged && (
+                    <MobileNavItem to="/trainers" label="Chercher un·e Dresseur·euse" />
+                )}
                 {logged && <MobileNavItem to="/pokemon" label="Chercher un Pokémon" />}
                 {logged && <MobileNavItem to="/profile" label="Profil" />}
 
@@ -88,7 +91,6 @@ export default function Header() {
                     <button
                         onClick={handleLogout}
                         className="block px-4 py-4 text-lg w-full text-left hover:text-red-400 transition"
-                        role="menuitem"
                     >
                         Déconnexion
                     </button>
@@ -117,7 +119,6 @@ function MobileNavItem({ to, label }: { to: string; label: string }) {
     return (
         <NavLink
             to={to}
-            role="menuitem"
             className={({ isActive }) =>
                 `block px-4 py-4 text-lg border-b border-gray-700 hover:bg-gray-700 transition ${
                     isActive ? "bg-gray-700 font-semibold text-yellow-400" : ""

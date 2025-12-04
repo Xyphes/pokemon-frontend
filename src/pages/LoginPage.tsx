@@ -13,18 +13,19 @@ export default function LoginPage() {
 
     const [form, setForm] = useState<LoginForm>({ login: "", password: "" });
     const [error, setError] = useState<string | null>(null);
+    const [fieldError, setFieldError] = useState(false);
     const [loading, setLoading] = useState(false);
 
     const errorRef = useRef<HTMLDivElement>(null);
     const loginRef = useRef<HTMLInputElement>(null);
 
     useEffect(() => {
-        loginRef.current?.focus(); // focus automatique sur le premier champ
+        loginRef.current?.focus();
     }, []);
 
     useEffect(() => {
         if (error) {
-            errorRef.current?.focus(); // focus sur le message d'erreur
+            errorRef.current?.focus();
         }
     }, [error]);
 
@@ -35,6 +36,7 @@ export default function LoginPage() {
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setError(null);
+        setFieldError(false);
         setLoading(true);
 
         try {
@@ -48,10 +50,9 @@ export default function LoginPage() {
                 const data = await res.json();
                 login(data.accessToken);
                 navigate("/");
-            } else if (res.status === 400) {
-                setError("Les champs sont invalides. Vérifiez votre saisie.");
-            } else if (res.status === 401) {
-                setError("Email ou mot de passe incorrect.");
+            } else if (res.status === 400 || res.status === 401) {
+                setError("Identifiants invalides. Vérifiez votre email et votre mot de passe.");
+                setFieldError(true);
             } else {
                 setError("Une erreur est survenue. Réessayez plus tard.");
             }
@@ -100,7 +101,8 @@ export default function LoginPage() {
                         onChange={handleChange}
                         required
                         className="w-full border rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                        aria-invalid={!!error}
+                        aria-invalid={fieldError}
+                        aria-describedby={error ? "login-error" : undefined}
                     />
                 </div>
 
@@ -116,7 +118,8 @@ export default function LoginPage() {
                         onChange={handleChange}
                         required
                         className="w-full border rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                        aria-invalid={!!error}
+                        aria-invalid={fieldError}
+                        aria-describedby={error ? "login-error" : undefined}
                     />
                 </div>
 
