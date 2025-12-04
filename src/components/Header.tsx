@@ -17,7 +17,7 @@ export default function Header() {
 
     return (
         <header
-            className="fixed top-0 left-0 right-0 z-40 bg-gradient-to-r from-emerald-900 via-emerald-800 to-emerald-900 text-amber-100 shadow-[0_4px_0_rgba(0,0,0,0.45)] border-b border-amber-700/40"
+            className=" top-0 left-0 right-0 z-40 bg-gradient-to-r from-emerald-900 via-emerald-800 to-emerald-900 text-amber-100 shadow-[0_4px_0_rgba(0,0,0,0.45)] border-b border-amber-700/40"
         >
             <div className="max-w-6xl mx-auto flex items-center justify-between px-4 py-3 md:py-4">
                 <Link
