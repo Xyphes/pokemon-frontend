@@ -48,7 +48,7 @@ export default function LoginPage() {
 
             if (res.status === 200) {
                 const data = await res.json();
-                login(data.accessToken);
+                login(data.accessToken, data.trainerId);
                 navigate("/");
             } else if (res.status === 400 || res.status === 401) {
                 setError("Identifiants invalides. Vérifiez votre email et votre mot de passe.");

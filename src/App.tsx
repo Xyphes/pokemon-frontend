@@ -1,21 +1,29 @@
 ﻿import { Routes, Route, Navigate } from 'react-router-dom';
-import TestPage from './pages/TestPage';
 import LoginPage from './pages/LoginPage';
 import Header from "./components/Header.tsx";
 import SubscribePage from "./pages/SubscribePage.tsx";
+import BoxesPage from "./pages/box/BoxesPage.tsx";
+import CreateBoxPage from "./pages/box/CreateBoxPage.tsx";
+import HomePage from "./pages/HomePage.tsx";
+import BoxDetailPage from "./pages/box/BoxDetailPage.tsx";
+import AddPokemonPage from "./pages/pokemons/AddPokemonPage.tsx";
 
 function App() {
     return (
         <>
             <Header/>
             <Routes>
-            <Route path="/" element={<Navigate to="/test"/>}/>
-            <Route path="/login" element={<LoginPage/>}/>
-            <Route path="/signup" element={<SubscribePage/>}/>
-            <Route path="/boxes" element={<div>Liste des boîtes</div>}/>
+                <Route path="/Home" element={<HomePage/>}/>
 
-            {/* Test Tailwind */}
-            <Route path="/test" element={<TestPage/>}/>
+                <Route path="/" element={<Navigate to="/Home"/>}/>
+                <Route path="/login" element={<LoginPage/>}/>
+                <Route path="/signup" element={<SubscribePage/>}/>
+
+                <Route path="/boxes" element={<BoxesPage/>}/>
+                <Route path="/boxes/new" element={<CreateBoxPage/>}/>
+                <Route path="/boxes/:boxId" element={<BoxDetailPage/>}/>
+                <Route path="/boxes/:boxId/add-pokemon" element={<AddPokemonPage/>} />
+
         </Routes></>
     );
 }
