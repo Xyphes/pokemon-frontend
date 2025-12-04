@@ -96,7 +96,7 @@ export default function Header() {
             {/* Overlay pleine largeur, en surcouche */}
             <nav
                 id="mobile-menu"
-                className={`md:hidden fixed top-[64px] left-0 right-0 z-30 bg-emerald-950/95 border-t border-amber-700/40 overflow-hidden transition-all duration-300 ${
+                className={`md:hidden top-[64px] left-0 right-0 z-30 bg-emerald-950/95 border-t border-amber-700/40 overflow-hidden transition-all duration-300 ${
                     open ? "max-h-96" : "max-h-0"
                 }`}
                 aria-label="Navigation principale mobile"
