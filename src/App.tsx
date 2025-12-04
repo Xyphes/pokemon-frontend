@@ -11,6 +11,9 @@ import PokemonDetailPage from "./pages/pokemons/PokemonDetail.tsx";
 import AboutPage from "./pages/AboutPage.tsx";
 import PokemonSearchPage from "./pages/pokemons/PokemonSearchPage.tsx";
 import Footer from "./components/Footer.tsx";
+import ProfilePage from "./pages/trainer/ProfilePage.tsx";
+import EditProfilePage from "./pages/trainer/EditProfilePage.tsx";
+import TrainerSearchPage from "./pages/trainer/TrainerSearchPage.tsx";
 
 function App() {
     return (
@@ -33,6 +36,12 @@ function App() {
                 <Route path="/boxes/:boxId/add-pokemon" element={<AddPokemonPage/>}/>
                 <Route path="/pokemon/:pokemonId" element={<PokemonDetailPage/>}/>
                 <Route path="/pokemon" element={<PokemonSearchPage />} />
+
+
+                <Route path="/profile/:trainerId" element={<ProfilePage />} />
+                <Route path="/profile/edit" element={<EditProfilePage />} />
+
+                <Route path="/trainers" element={<TrainerSearchPage />} />
 
 
 

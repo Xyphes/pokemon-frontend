@@ -5,7 +5,7 @@ import {useAuth} from "../context/AuthContext";
 export default function Header() {
     const [open, setOpen] = useState(false);
     const navigate = useNavigate();
-    const {logged, logout} = useAuth();
+    const {logged, logout, trainerId} = useAuth();
 
     const handleLogout = () => {
         logout();
@@ -51,7 +51,7 @@ export default function Header() {
                         />
                     )}
                     {logged && <NavItem to="/pokemon" label="Chercher un Pokémon" onClick={closeMenu} />}
-                    {logged && <NavItem to="/profile" label="Profil" onClick={closeMenu} />}
+                    {logged && <NavItem to={`/profile/${trainerId}`} label="Profil" onClick={closeMenu} />}
 
                     {!logged && <NavItem to="/login" label="Connexion" onClick={closeMenu} />}
                     {!logged && <NavItem to="/signup" label="Inscription" onClick={closeMenu} />}
@@ -118,7 +118,7 @@ export default function Header() {
                     <MobileNavItem to="/pokemon" label="Chercher un Pokémon" onClick={closeMenu} />
                 )}
                 {logged && (
-                    <MobileNavItem to="/profile" label="Profil" onClick={closeMenu} />
+                    <MobileNavItem to={`/profile/${trainerId}`} label="Profil" onClick={closeMenu} />
                 )}
 
                 {!logged && (
