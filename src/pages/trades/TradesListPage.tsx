@@ -75,7 +75,6 @@ export default function TradesListPage() {
         if (token && trainerId) {
             fetchTrades(0);
         }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [token, trainerId, sortOrder, statusFilter]);
 
     const handleSubmit = (e: FormEvent) => {

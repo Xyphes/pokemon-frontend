@@ -119,7 +119,6 @@ export default function TradeDetailPage() {
 
     useEffect(() => {
         loadTrade();
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [token, tradeId]);
 
     const isReceiver =
