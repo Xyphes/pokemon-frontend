@@ -524,7 +524,10 @@
 <a name='L459'></a><a href='#L459'>459</a>
 <a name='L460'></a><a href='#L460'>460</a>
 <a name='L461'></a><a href='#L461'>461</a>
-<a name='L462'></a><a href='#L462'>462</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L462'></a><a href='#L462'>462</a>
+<a name='L463'></a><a href='#L463'>463</a>
+<a name='L464'></a><a href='#L464'>464</a>
+<a name='L465'></a><a href='#L465'>465</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -710,6 +713,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -729,6 +733,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -746,6 +751,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -985,9 +991,9 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">﻿import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
-import { useAuth } from "../../context/AuthContext";
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">﻿import {useEffect, useState} from "react";
+import {useNavigate, useParams} from "react-router-dom";
+import {useAuth} from "../../context/AuthContext";
 &nbsp;
 interface PokemonDetail {
     id: number;
@@ -1008,8 +1014,8 @@ interface TrainerInfo {
 }
 &nbsp;
 export default function <span class="fstat-no" title="function not covered" >PokemonDetailPage() {</span>
-    const { token, trainerId <span class="cstat-no" title="statement not covered" >} = useAuth();</span>
-    const { pokemonId <span class="cstat-no" title="statement not covered" >} = useParams&lt;{ pokemonId: string }&gt;();</span>
+    const {token, trainerId<span class="cstat-no" title="statement not covered" >} = useAuth();</span>
+    const {pokemonId<span class="cstat-no" title="statement not covered" >} = useParams&lt;{ pokemonId: string }&gt;();</span>
     const <span class="cstat-no" title="statement not covered" >navigate = useNavigate();</span>
 &nbsp;
     const [pokemon, setPokemon<span class="cstat-no" title="statement not covered" >] = useState&lt;PokemonDetail | null&gt;(null);</span>
@@ -1066,7 +1072,7 @@ export default function <span class="fstat-no" title="function not covered" >Pok
                 const trainerRes = <span class="cstat-no" title="statement not covered" >await fetch(</span>
                     `http://localhost:8000/trainers/${data.trainerId}`,
                     {
-                        headers: { Authorization: `Bearer ${token}` },
+                        headers: {Authorization: `Bearer ${token}`},
                     }
                 );
 <span class="cstat-no" title="statement not covered" >                if (trainerRes.ok) {</span>
@@ -1095,7 +1101,7 @@ export default function <span class="fstat-no" title="function not covered" >Pok
                 `http://localhost:8000/pokemons/${pokemon.id}`,
                 {
                     method: "DELETE",
-                    headers: { Authorization: `Bearer ${token}` },
+                    headers: {Authorization: `Bearer ${token}`},
                 }
             );
 <span class="cstat-no" title="statement not covered" >            if (!res.ok) <span class="cstat-no" title="statement not covered" >throw new Error();</span></span>
@@ -1162,7 +1168,8 @@ export default function <span class="fstat-no" title="function not covered" >Pok
 &nbsp;
 <span class="cstat-no" title="statement not covered" >    if (error || !pokemon) {</span>
 <span class="cstat-no" title="statement not covered" >        return (</span>
-            &lt;main className="min-h-screen p-4 bg-gradient-to-b from-emerald-950 via-emerald-900 to-emerald-800 text-amber-100"&gt;
+            &lt;main
+                className="min-h-screen p-4 bg-gradient-to-b from-emerald-950 via-emerald-900 to-emerald-800 text-amber-100"&gt;
                 &lt;h1 className="text-3xl font-extrabold mb-4 text-amber-200"&gt;
                     Pokémon
                 &lt;/h1&gt;
@@ -1181,7 +1188,8 @@ export default function <span class="fstat-no" title="function not covered" >Pok
     }
 &nbsp;
 <span class="cstat-no" title="statement not covered" >    return (</span>
-        &lt;main className="min-h-screen p-4 bg-gradient-to-b from-emerald-950 via-emerald-900 to-emerald-800 text-amber-100"&gt;
+        &lt;main
+            className="min-h-screen p-4 bg-gradient-to-b from-emerald-950 via-emerald-900 to-emerald-800 text-amber-100"&gt;
             &lt;div className="max-w-3xl mx-auto space-y-6"&gt;
                 {/* Titre + Retour */}
                 &lt;div className="flex items-center justify-between gap-4"&gt;
@@ -1214,7 +1222,8 @@ export default function <span class="fstat-no" title="function not covered" >Pok
                 {/* Shiny badge */}
                 {pokemon.isShiny &amp;&amp; (
                     &lt;div className="flex justify-center"&gt;
-            &lt;span className="px-3 py-1 bg-yellow-400/20 text-yellow-300 text-sm font-bold rounded-full border border-yellow-400/50"&gt;
+            &lt;span
+                className="px-3 py-1 bg-yellow-400/20 text-yellow-300 text-sm font-bold rounded-full border border-yellow-400/50"&gt;
               ✨ Pokémon chromatique
             &lt;/span&gt;
                     &lt;/div&gt;
@@ -1453,7 +1462,7 @@ export default function <span class="fstat-no" title="function not covered" >Pok
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-12-05T13:20:24.089Z
+                at 2025-12-05T13:43:51.018Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>

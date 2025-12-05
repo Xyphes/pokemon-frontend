@@ -63,7 +63,7 @@ export default function Header() {
                     {logged && (
                         <NavItem
                             to={`/profile/${trainerId}`}
-                            label="Profil"
+                            label="Profil utilisateur·ice·s"
                             onClick={closeMenu}
                         />
                     )}
@@ -82,7 +82,7 @@ export default function Header() {
                             onClick={handleLogout}
                             className="text-sm md:text-base font-semibold px-3 py-1.5 rounded-full border border-amber-500 bg-emerald-950/60 hover:bg-emerald-800 focus:outline-none focus:ring-2 focus:ring-amber-400"
                         >
-                            Quitter la partie
+                            Deconnexion
                         </button>
                     )}
                 </nav>
@@ -142,7 +142,7 @@ export default function Header() {
                 {logged && (
                     <MobileNavItem
                         to={`/profile/${trainerId}`}
-                        label="Profil"
+                        label="Profil utilisateur·ice·s"
                         onClick={closeMenu}
                     />
                 )}
@@ -161,7 +161,7 @@ export default function Header() {
                         onClick={handleLogout}
                         className="block w-full text-left px-4 py-3 text-base font-semibold text-amber-200 hover:bg-emerald-800/70 focus:outline-none focus:ring-2 focus:ring-amber-400"
                     >
-                        Quitter la partie
+                        Deconnexion
                     </button>
                 )}
             </nav>

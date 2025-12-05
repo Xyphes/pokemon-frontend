@@ -562,7 +562,11 @@
 <a name='L497'></a><a href='#L497'>497</a>
 <a name='L498'></a><a href='#L498'>498</a>
 <a name='L499'></a><a href='#L499'>499</a>
-<a name='L500'></a><a href='#L500'>500</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L500'></a><a href='#L500'>500</a>
+<a name='L501'></a><a href='#L501'>501</a>
+<a name='L502'></a><a href='#L502'>502</a>
+<a name='L503'></a><a href='#L503'>503</a>
+<a name='L504'></a><a href='#L504'>504</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -794,6 +798,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -804,6 +809,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -996,6 +1002,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -1061,9 +1069,9 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">﻿import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
-import { useAuth } from "../../context/AuthContext";
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">﻿import {useEffect, useState} from "react";
+import {useNavigate, useParams} from "react-router-dom";
+import {useAuth} from "../../context/AuthContext";
 &nbsp;
 interface PokemonInBox {
     id: number;
@@ -1086,8 +1094,8 @@ interface SimpleBox {
 }
 &nbsp;
 export default function <span class="fstat-no" title="function not covered" >BoxDetailPage() {</span>
-    const { token, trainerId <span class="cstat-no" title="statement not covered" >} = useAuth();</span>
-    const { boxId <span class="cstat-no" title="statement not covered" >} = useParams&lt;{ boxId: string }&gt;();</span>
+    const {token, trainerId<span class="cstat-no" title="statement not covered" >} = useAuth();</span>
+    const {boxId<span class="cstat-no" title="statement not covered" >} = useParams&lt;{ boxId: string }&gt;();</span>
     const <span class="cstat-no" title="statement not covered" >navigate = useNavigate();</span>
 &nbsp;
     const [box, setBox<span class="cstat-no" title="statement not covered" >] = useState&lt;BoxDetail | null&gt;(null);</span>
@@ -1154,7 +1162,7 @@ export default function <span class="fstat-no" title="function not covered" >Box
                 `http://localhost:8000/trainers/${trainerId}/boxes/${box.id}`,
                 {
                     method: "DELETE",
-                    headers: { Authorization: `Bearer ${token}` },
+                    headers: {Authorization: `Bearer ${token}`},
                 }
             );
 <span class="cstat-no" title="statement not covered" >            if (!res.ok) <span class="cstat-no" title="statement not covered" >throw new Error();</span></span>
@@ -1178,13 +1186,13 @@ export default function <span class="fstat-no" title="function not covered" >Box
                         Authorization: `Bearer ${token}`,
                         "Content-Type": "application/json",
                     },
-                    body: JSON.stringify({ name: newName.trim() }),
+                    body: JSON.stringify({name: newName.trim()}),
                 }
             );
 &nbsp;
 <span class="cstat-no" title="statement not covered" >            if (!res.ok) <span class="cstat-no" title="statement not covered" >throw new Error();</span></span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >            setBox({ ...box, name: newName.trim() });</span>
+<span class="cstat-no" title="statement not covered" >            setBox({...box, name: newName.trim()});</span>
 <span class="cstat-no" title="statement not covered" >            setIsRenaming(false);</span>
         } catch {
 <span class="cstat-no" title="statement not covered" >            setError("Impossible de renommer cette boîte pour le moment.");</span>
@@ -1206,7 +1214,7 @@ export default function <span class="fstat-no" title="function not covered" >Box
             const res = <span class="cstat-no" title="statement not covered" >await fetch(</span>
                 `http://localhost:8000/trainers/${trainerId}/boxes`,
                 {
-                    headers: { Authorization: `Bearer ${token}` },
+                    headers: {Authorization: `Bearer ${token}`},
                 }
             );
 <span class="cstat-no" title="statement not covered" >            if (!res.ok) <span class="cstat-no" title="statement not covered" >throw new Error();</span></span>
@@ -1240,7 +1248,7 @@ export default function <span class="fstat-no" title="function not covered" >Box
                             Authorization: `Bearer ${token}`,
                             "Content-Type": "application/json",
                         },
-                        body: JSON.stringify({ boxId: Number(destinationBoxId) }), // UNIQUEMENT boxId
+                        body: JSON.stringify({boxId: Number(destinationBoxId)}), // UNIQUEMENT boxId
                     });
 <span class="cstat-no" title="statement not covered" >                    if (!res.ok) <span class="cstat-no" title="statement not covered" >throw new Error();</span></span>
                 })
@@ -1250,7 +1258,7 @@ export default function <span class="fstat-no" title="function not covered" >Box
 <span class="cstat-no" title="statement not covered" >            setLoading(true);</span>
             const boxRes = <span class="cstat-no" title="statement not covered" >await fetch(</span>
                 `http://localhost:8000/trainers/${trainerId}/boxes/${box.id}`,
-                { headers: { Authorization: `Bearer ${token}` } }
+                {headers: {Authorization: `Bearer ${token}`}}
             );
 <span class="cstat-no" title="statement not covered" >            if (!boxRes.ok) <span class="cstat-no" title="statement not covered" >throw new Error();</span></span>
             const data: BoxDetail = <span class="cstat-no" title="statement not covered" >await boxRes.json();</span>
@@ -1284,7 +1292,8 @@ export default function <span class="fstat-no" title="function not covered" >Box
 &nbsp;
 <span class="cstat-no" title="statement not covered" >    if (error || !box) {</span>
 <span class="cstat-no" title="statement not covered" >        return (</span>
-            &lt;main className="min-h-screen p-4 bg-gradient-to-b from-emerald-950 via-emerald-900 to-emerald-800 text-amber-100"&gt;
+            &lt;main
+                className="min-h-screen p-4 bg-gradient-to-b from-emerald-950 via-emerald-900 to-emerald-800 text-amber-100"&gt;
                 &lt;h1 className="text-3xl font-extrabold mb-4 text-amber-200"&gt;
                     Coffre d&amp;apos;Hyrule
                 &lt;/h1&gt;
@@ -1303,7 +1312,8 @@ export default function <span class="fstat-no" title="function not covered" >Box
     }
 &nbsp;
 <span class="cstat-no" title="statement not covered" >    return (</span>
-        &lt;main className="min-h-screen p-4 bg-gradient-to-b from-emerald-950 via-emerald-900 to-emerald-800 text-amber-100"&gt;
+        &lt;main
+            className="min-h-screen p-4 bg-gradient-to-b from-emerald-950 via-emerald-900 to-emerald-800 text-amber-100"&gt;
             &lt;div className="max-w-6xl mx-auto space-y-6"&gt;
                 {/* Titre + Retour */}
                 &lt;div className="flex items-center justify-between gap-4"&gt;
@@ -1502,7 +1512,8 @@ export default function <span class="fstat-no" title="function not covered" >Box
 &nbsp;
                                             {p.isShiny &amp;&amp; (
                                                 &lt;div className="flex justify-center mb-2"&gt;
-                          &lt;span className="px-2 py-0.5 bg-yellow-400/20 text-yellow-300 text-xs font-bold rounded-full border border-yellow-400/50"&gt;
+                          &lt;span
+                              className="px-2 py-0.5 bg-yellow-400/20 text-yellow-300 text-xs font-bold rounded-full border border-yellow-400/50"&gt;
                             ✨ Shiny
                           &lt;/span&gt;
                                                 &lt;/div&gt;
@@ -1512,7 +1523,8 @@ export default function <span class="fstat-no" title="function not covered" >Box
                         &lt;span className="font-bold text-lg text-amber-200 truncate"&gt;
                           {p.name}
                         &lt;/span&gt;
-                                                &lt;span className="text-sm bg-emerald-800/60 px-2 py-1 rounded-full text-amber-300 font-semibold"&gt;
+                                                &lt;span
+                                                    className="text-sm bg-emerald-800/60 px-2 py-1 rounded-full text-amber-300 font-semibold"&gt;
                           Nv {p.level}
                         &lt;/span&gt;
                                             &lt;/div&gt;
@@ -1567,7 +1579,7 @@ export default function <span class="fstat-no" title="function not covered" >Box
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-12-05T13:20:24.089Z
+                at 2025-12-05T13:43:51.018Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>
