@@ -30,9 +30,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">68.18% </span>
+                <span class="strong">95.45% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>30/44</span>
+                <span class='fraction'>42/44</span>
             </div>
         
             
@@ -292,19 +292,19 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">7x</span>
-<span class="cline-any cline-yes">7x</span>
-<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">21x</span>
+<span class="cline-any cline-yes">21x</span>
+<span class="cline-any cline-yes">21x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">21x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">21x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">21x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -467,17 +467,12 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">21x</span>
+<span class="cline-any cline-yes">69x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">21x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">69x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -494,12 +489,17 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">21x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">21x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">69x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">69x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -554,27 +554,27 @@ export default function Header() {
                     aria-label="Navigation principale"
                 &gt;
                     {logged &amp;&amp; (
-<span class="branch-1 cbranch-no" title="branch not covered" >                        &lt;NavItem to="/boxes" label="Mes boîtes" onClick={closeMenu}/&gt;</span>
+                        &lt;NavItem to="/boxes" label="Mes boîtes" onClick={closeMenu}/&gt;
                     )}
                     {logged &amp;&amp; (
-<span class="branch-1 cbranch-no" title="branch not covered" >                        &lt;NavItem to="/trades" label="Mes échanges" onClick={closeMenu}/&gt;</span>
+                        &lt;NavItem to="/trades" label="Mes échanges" onClick={closeMenu}/&gt;
                     )}
                     {logged &amp;&amp; (
-<span class="branch-1 cbranch-no" title="branch not covered" >                        &lt;NavItem</span>
+                        &lt;NavItem
                             to="/trainers"
                             label="Chercher un·e Dresseur·euse"
                             onClick={closeMenu}
                         /&gt;
                     )}
                     {logged &amp;&amp; (
-<span class="branch-1 cbranch-no" title="branch not covered" >                        &lt;NavItem</span>
+                        &lt;NavItem
                             to="/pokemon"
                             label="Chercher un Pokémon"
                             onClick={closeMenu}
                         /&gt;
                     )}
                     {logged &amp;&amp; (
-<span class="branch-1 cbranch-no" title="branch not covered" >                        &lt;NavItem</span>
+                        &lt;NavItem
                             to={`/profile/${trainerId}`}
                             label="Profil utilisateur·ice·s"
                             onClick={closeMenu}
@@ -591,7 +591,7 @@ export default function Header() {
                     &lt;NavItem to="/about" label="À propos" onClick={closeMenu}/&gt;
 &nbsp;
                     {logged &amp;&amp; (
-<span class="branch-1 cbranch-no" title="branch not covered" >                        &lt;button</span>
+                        &lt;button
                             onClick={handleLogout}
                             className="text-sm md:text-base font-semibold px-3 py-1.5 rounded-full border border-amber-500 bg-emerald-950/60 hover:bg-emerald-800 focus:outline-none focus:ring-2 focus:ring-amber-400"
                         &gt;
@@ -633,27 +633,27 @@ export default function Header() {
                 aria-label="Navigation principale mobile"
             &gt;
                 {logged &amp;&amp; (
-<span class="branch-1 cbranch-no" title="branch not covered" >                    &lt;MobileNavItem to="/boxes" label="Mes boîtes" onClick={closeMenu}/&gt;</span>
+                    &lt;MobileNavItem to="/boxes" label="Mes boîtes" onClick={closeMenu}/&gt;
                 )}
                 {logged &amp;&amp; (
-<span class="branch-1 cbranch-no" title="branch not covered" >                    &lt;MobileNavItem to="/trades" label="Mes échanges" onClick={closeMenu}/&gt;</span>
+                    &lt;MobileNavItem to="/trades" label="Mes échanges" onClick={closeMenu}/&gt;
                 )}
                 {logged &amp;&amp; (
-<span class="branch-1 cbranch-no" title="branch not covered" >                    &lt;MobileNavItem</span>
+                    &lt;MobileNavItem
                         to="/trainers"
                         label="Chercher un·e Dresseur·euse"
                         onClick={closeMenu}
                     /&gt;
                 )}
                 {logged &amp;&amp; (
-<span class="branch-1 cbranch-no" title="branch not covered" >                    &lt;MobileNavItem</span>
+                    &lt;MobileNavItem
                         to="/pokemon"
                         label="Chercher un Pokémon"
                         onClick={closeMenu}
                     /&gt;
                 )}
                 {logged &amp;&amp; (
-<span class="branch-1 cbranch-no" title="branch not covered" >                    &lt;MobileNavItem</span>
+                    &lt;MobileNavItem
                         to={`/profile/${trainerId}`}
                         label="Profil utilisateur·ice·s"
                         onClick={closeMenu}
@@ -670,7 +670,7 @@ export default function Header() {
                 &lt;MobileNavItem to="/about" label="À propos" onClick={closeMenu}/&gt;
 &nbsp;
                 {logged &amp;&amp; (
-<span class="branch-1 cbranch-no" title="branch not covered" >                    &lt;button</span>
+                    &lt;button
                         onClick={handleLogout}
                         className="block w-full text-left px-4 py-3 text-base font-semibold text-amber-200 hover:bg-emerald-800/70 focus:outline-none focus:ring-2 focus:ring-amber-400"
                     &gt;
@@ -742,7 +742,7 @@ function MobileNavItem({
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-12-05T13:43:51.018Z
+                at 2025-12-05T15:02:38.696Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

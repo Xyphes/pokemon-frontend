@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/9</span>
+                <span class='fraction'>9/9</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/4</span>
+                <span class='fraction'>4/4</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/2</span>
+                <span class='fraction'>2/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/7</span>
+                <span class='fraction'>7/7</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -94,64 +94,64 @@
 <a name='L29'></a><a href='#L29'>29</a>
 <a name='L30'></a><a href='#L30'>30</a>
 <a name='L31'></a><a href='#L31'>31</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">﻿// src/api.ts
-const API_URL = <span class="cstat-no" title="statement not covered" >"http://localhost:8000";</span>
+const API_URL = "http://localhost:8000";
 &nbsp;
-export async function <span class="fstat-no" title="function not covered" >login(l</span>ogin: string, password: string) {
-    const res = <span class="cstat-no" title="statement not covered" >await fetch(`${API_URL}/login`, {</span>
+export async function login(login: string, password: string) {
+    const res = await fetch(`${API_URL}/login`, {
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify({login, password})
     });
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    if (!res.ok) <span class="cstat-no" title="statement not covered" >throw new Error(`Login failed: ${res.status}`);</span></span>
-<span class="cstat-no" title="statement not covered" >    return res.json(); // { accessToken, trainerId }</span>
+    if (!res.ok) throw new Error(`Login failed: ${res.status}`);
+    return res.json(); // { accessToken, trainerId }
 }
 &nbsp;
-export async function <span class="fstat-no" title="function not covered" >signup(d</span>ata: {
+export async function signup(data: {
     firstName: string;
     lastName: string;
     login: string;
     birthDate: string;
     password: string;
 }) {
-    const res = <span class="cstat-no" title="statement not covered" >await fetch(`${API_URL}/subscribe`, {</span>
+    const res = await fetch(`${API_URL}/subscribe`, {
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify(data)
     });
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    if (!res.ok) <span class="cstat-no" title="statement not covered" >throw new Error(`Signup failed: ${res.status}`);</span></span>
-<span class="cstat-no" title="statement not covered" >    return res.json(); // { accessToken, trainerId }</span>
+    if (!res.ok) throw new Error(`Signup failed: ${res.status}`);
+    return res.json(); // { accessToken, trainerId }
 }
 &nbsp;</pre></td></tr></table></pre>
 
@@ -160,7 +160,7 @@ export async function <span class="fstat-no" title="function not covered" >signu
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-12-05T13:43:51.018Z
+                at 2025-12-05T15:02:38.696Z
             </div>
         <script src="../prettify.js"></script>
         <script>

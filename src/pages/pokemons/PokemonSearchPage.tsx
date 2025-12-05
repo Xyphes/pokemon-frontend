@@ -1,4 +1,4 @@
-﻿import {type FormEvent, useEffect, useState} from "react";
+﻿﻿import {type FormEvent, useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
 import {useAuth} from "../../context/AuthContext";
 
@@ -313,8 +313,11 @@ export default function PokemonSearchPage() {
 
                         {/* Genre */}
                         <div>
-                            <span className="block font-semibold mb-1">Genre</span>
+                            <label htmlFor="gender" className="block font-semibold mb-1">
+                                Genre
+                            </label>
                             <select
+                                id="gender"
                                 value={gender}
                                 onChange={(e) =>
                                     setGender(
@@ -332,8 +335,11 @@ export default function PokemonSearchPage() {
 
                         {/* Chromatique */}
                         <div>
-                            <span className="block font-semibold mb-1">Chromatique</span>
+                            <label htmlFor="isShiny" className="block font-semibold mb-1">
+                                Chromatique
+                            </label>
                             <select
+                                id="isShiny"
                                 value={isShiny}
                                 onChange={(e) =>
                                     setIsShiny(e.target.value as "any" | "true" | "false")
@@ -353,7 +359,7 @@ export default function PokemonSearchPage() {
                             disabled={loading}
                             className="px-4 py-2 rounded-full bg-amber-300 text-emerald-950 font-bold border-2 border-amber-600 hover:bg-amber-200 focus:outline-none focus:ring-2 focus:ring-amber-300 disabled:opacity-60"
                         >
-                            {loading ? "Recherche..." : "Appliquer les filtres"}
+                            Appliquer les filtres
                         </button>
                     </div>
                 </form>
@@ -375,6 +381,7 @@ export default function PokemonSearchPage() {
                         <>
                             <div className="overflow-x-auto">
                                 <table className="min-w-full text-sm">
+                                    <thead>
                                     <tr className="border-b border-emerald-700 text-amber-200">
                                         <th className="text-left py-2 pr-2">Espèce</th>
                                         <th className="text-left py-2 pr-2">Nom</th>
@@ -386,6 +393,7 @@ export default function PokemonSearchPage() {
                                         <th className="text-left py-2 pr-2">Dresseur·euse</th>
                                         <th className="text-left py-2 pr-2">Actions</th>
                                     </tr>
+                                    </thead>
 
                                     <tbody>
                                     {pokemons.map((p) => {
