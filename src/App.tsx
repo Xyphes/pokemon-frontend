@@ -14,6 +14,9 @@ import Footer from "./components/Footer.tsx";
 import ProfilePage from "./pages/trainer/ProfilePage.tsx";
 import EditProfilePage from "./pages/trainer/EditProfilePage.tsx";
 import TrainerSearchPage from "./pages/trainer/TrainerSearchPage.tsx";
+import TradeCreatePage from "./pages/trades/TradeCreatePage.tsx";
+import TradesListPage from "./pages/trades/TradesListPage.tsx";
+import TradeDetailPage from "./pages/trades/TradeDetailPage.tsx";
 
 function App() {
     return (
@@ -42,6 +45,10 @@ function App() {
                 <Route path="/profile/edit" element={<EditProfilePage />} />
 
                 <Route path="/trainers" element={<TrainerSearchPage />} />
+
+                <Route path="/trades/new" element={<TradeCreatePage />} />
+                <Route path="/trades" element={<TradesListPage />} />
+                <Route path="/trades/:tradeId" element={<TradeDetailPage />} />
 
 
 

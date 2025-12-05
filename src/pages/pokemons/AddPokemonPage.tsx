@@ -6,6 +6,7 @@ export default function AddPokemonPage() {
     const {token} = useAuth();
     const {boxId} = useParams<{ boxId: string }>();
     const navigate = useNavigate();
+    console.log(boxId);
 
     const [species, setSpecies] = useState("");
     const [name, setName] = useState("");
@@ -62,13 +63,13 @@ export default function AddPokemonPage() {
                     },
                     body: JSON.stringify({
                         species: species.trim(),
-                        // si name vide -> on met species
                         name: name.trim() === "" ? species.trim() : name.trim(),
-                        genderTypeCode: gender,
                         level: Number(level),
+                        genderTypeCode: gender,
+                        isShiny,
                         size: height === "" ? null : Number(height),
                         weight: weight === "" ? null : Number(weight),
-                        isShiny,
+                        boxId: Number(boxId)
                     }),
                 }
             );
