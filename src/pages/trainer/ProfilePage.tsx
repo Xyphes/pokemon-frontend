@@ -1,6 +1,6 @@
-﻿import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
-import { useAuth } from "../../context/AuthContext";
+﻿import {useEffect, useState} from "react";
+import {useNavigate, useParams} from "react-router-dom";
+import {useAuth} from "../../context/AuthContext";
 
 interface TrainerProfile {
     id: number;
@@ -11,8 +11,8 @@ interface TrainerProfile {
 }
 
 export default function ProfilePage() {
-    const { token, trainerId: currentTrainerId } = useAuth();
-    const { trainerId } = useParams<{ trainerId: string }>();
+    const {token, trainerId: currentTrainerId} = useAuth();
+    const {trainerId} = useParams<{ trainerId: string }>();
     const navigate = useNavigate();
 
     const [trainer, setTrainer] = useState<TrainerProfile | null>(null);
@@ -88,7 +88,8 @@ export default function ProfilePage() {
     const formattedBirthDate = new Date(trainer.birthDate).toLocaleDateString();
 
     return (
-        <main className="min-h-screen p-4 bg-gradient-to-b from-emerald-950 via-emerald-900 to-emerald-800 text-amber-100">
+        <main
+            className="min-h-screen p-4 bg-gradient-to-b from-emerald-950 via-emerald-900 to-emerald-800 text-amber-100">
             <section
                 className="max-w-xl mx-auto bg-emerald-950/80 border border-emerald-700 rounded-xl p-6 space-y-4"
                 aria-labelledby="profile-title"

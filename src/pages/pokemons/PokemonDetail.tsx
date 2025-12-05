@@ -1,6 +1,6 @@
-﻿import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
-import { useAuth } from "../../context/AuthContext";
+﻿import {useEffect, useState} from "react";
+import {useNavigate, useParams} from "react-router-dom";
+import {useAuth} from "../../context/AuthContext";
 
 interface PokemonDetail {
     id: number;
@@ -21,8 +21,8 @@ interface TrainerInfo {
 }
 
 export default function PokemonDetailPage() {
-    const { token, trainerId } = useAuth();
-    const { pokemonId } = useParams<{ pokemonId: string }>();
+    const {token, trainerId} = useAuth();
+    const {pokemonId} = useParams<{ pokemonId: string }>();
     const navigate = useNavigate();
 
     const [pokemon, setPokemon] = useState<PokemonDetail | null>(null);
@@ -79,7 +79,7 @@ export default function PokemonDetailPage() {
                 const trainerRes = await fetch(
                     `http://localhost:8000/trainers/${data.trainerId}`,
                     {
-                        headers: { Authorization: `Bearer ${token}` },
+                        headers: {Authorization: `Bearer ${token}`},
                     }
                 );
                 if (trainerRes.ok) {
@@ -108,7 +108,7 @@ export default function PokemonDetailPage() {
                 `http://localhost:8000/pokemons/${pokemon.id}`,
                 {
                     method: "DELETE",
-                    headers: { Authorization: `Bearer ${token}` },
+                    headers: {Authorization: `Bearer ${token}`},
                 }
             );
             if (!res.ok) throw new Error();
@@ -175,7 +175,8 @@ export default function PokemonDetailPage() {
 
     if (error || !pokemon) {
         return (
-            <main className="min-h-screen p-4 bg-gradient-to-b from-emerald-950 via-emerald-900 to-emerald-800 text-amber-100">
+            <main
+                className="min-h-screen p-4 bg-gradient-to-b from-emerald-950 via-emerald-900 to-emerald-800 text-amber-100">
                 <h1 className="text-3xl font-extrabold mb-4 text-amber-200">
                     Pokémon
                 </h1>
@@ -194,7 +195,8 @@ export default function PokemonDetailPage() {
     }
 
     return (
-        <main className="min-h-screen p-4 bg-gradient-to-b from-emerald-950 via-emerald-900 to-emerald-800 text-amber-100">
+        <main
+            className="min-h-screen p-4 bg-gradient-to-b from-emerald-950 via-emerald-900 to-emerald-800 text-amber-100">
             <div className="max-w-3xl mx-auto space-y-6">
                 {/* Titre + Retour */}
                 <div className="flex items-center justify-between gap-4">
@@ -227,7 +229,8 @@ export default function PokemonDetailPage() {
                 {/* Shiny badge */}
                 {pokemon.isShiny && (
                     <div className="flex justify-center">
-            <span className="px-3 py-1 bg-yellow-400/20 text-yellow-300 text-sm font-bold rounded-full border border-yellow-400/50">
+            <span
+                className="px-3 py-1 bg-yellow-400/20 text-yellow-300 text-sm font-bold rounded-full border border-yellow-400/50">
               ✨ Pokémon chromatique
             </span>
                     </div>

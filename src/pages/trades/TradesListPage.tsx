@@ -1,6 +1,6 @@
-﻿import { type FormEvent, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { useAuth } from "../../context/AuthContext";
+﻿import {type FormEvent, useEffect, useState} from "react";
+import {useNavigate} from "react-router-dom";
+import {useAuth} from "../../context/AuthContext";
 
 type TradeStatusCode = "PROPOSITION" | "ACCEPTED" | "DECLINED";
 
@@ -14,7 +14,7 @@ interface TradeListItem {
 type TradesResponse = TradeListItem[];
 
 export default function TradesListPage() {
-    const { token, trainerId } = useAuth();
+    const {token, trainerId} = useAuth();
     const navigate = useNavigate();
 
     const [statusFilter, setStatusFilter] = useState<"any" | TradeStatusCode>("any");
@@ -99,7 +99,7 @@ export default function TradesListPage() {
                     Authorization: `Bearer ${token}`,
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify({ statusCode: "ACCEPTED" }),
+                body: JSON.stringify({statusCode: "ACCEPTED"}),
             });
             if (!res.ok) throw new Error();
             fetchTrades(page);
@@ -117,7 +117,7 @@ export default function TradesListPage() {
                     Authorization: `Bearer ${token}`,
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify({ statusCode: "DECLINED" }),
+                body: JSON.stringify({statusCode: "DECLINED"}),
             });
             if (!res.ok) throw new Error();
             fetchTrades(page);
@@ -139,7 +139,8 @@ export default function TradesListPage() {
     }
 
     return (
-        <main className="min-h-screen p-4 bg-gradient-to-b from-emerald-950 via-emerald-900 to-emerald-800 text-amber-100">
+        <main
+            className="min-h-screen p-4 bg-gradient-to-b from-emerald-950 via-emerald-900 to-emerald-800 text-amber-100">
             <div className="max-w-5xl mx-auto space-y-6">
                 <h1 className="text-3xl font-extrabold text-amber-200 mb-2">
                     Mes échanges

@@ -1,6 +1,6 @@
-﻿import { type FormEvent, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { useAuth } from "../../context/AuthContext";
+﻿import {type FormEvent, useEffect, useState} from "react";
+import {useNavigate} from "react-router-dom";
+import {useAuth} from "../../context/AuthContext";
 
 interface PokemonSearchResult {
     id: number;
@@ -17,7 +17,7 @@ interface PokemonSearchResult {
 type SearchResponse = PokemonSearchResult[]; // l’API renvoie juste un tableau
 
 export default function PokemonSearchPage() {
-    const { token, trainerId } = useAuth();
+    const {token, trainerId} = useAuth();
     const navigate = useNavigate();
 
     // filtres
@@ -135,7 +135,8 @@ export default function PokemonSearchPage() {
     }
 
     return (
-        <main className="min-h-screen p-4 bg-gradient-to-b from-emerald-950 via-emerald-900 to-emerald-800 text-amber-100">
+        <main
+            className="min-h-screen p-4 bg-gradient-to-b from-emerald-950 via-emerald-900 to-emerald-800 text-amber-100">
             <div className="max-w-6xl mx-auto space-y-6">
                 <h1 className="text-3xl font-extrabold text-amber-200 mb-2">
                     Rechercher des Pokémons

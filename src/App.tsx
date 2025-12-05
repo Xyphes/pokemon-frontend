@@ -38,18 +38,17 @@ function App() {
 
                 <Route path="/boxes/:boxId/add-pokemon" element={<AddPokemonPage/>}/>
                 <Route path="/pokemon/:pokemonId" element={<PokemonDetailPage/>}/>
-                <Route path="/pokemon" element={<PokemonSearchPage />} />
+                <Route path="/pokemon" element={<PokemonSearchPage/>}/>
 
 
-                <Route path="/profile/:trainerId" element={<ProfilePage />} />
-                <Route path="/profile/edit" element={<EditProfilePage />} />
+                <Route path="/profile/:trainerId" element={<ProfilePage/>}/>
+                <Route path="/profile/edit" element={<EditProfilePage/>}/>
 
-                <Route path="/trainers" element={<TrainerSearchPage />} />
+                <Route path="/trainers" element={<TrainerSearchPage/>}/>
 
-                <Route path="/trades/new" element={<TradeCreatePage />} />
-                <Route path="/trades" element={<TradesListPage />} />
-                <Route path="/trades/:tradeId" element={<TradeDetailPage />} />
-
+                <Route path="/trades/new" element={<TradeCreatePage/>}/>
+                <Route path="/trades" element={<TradesListPage/>}/>
+                <Route path="/trades/:tradeId" element={<TradeDetailPage/>}/>
 
 
             </Routes>

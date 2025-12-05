@@ -1,6 +1,6 @@
-﻿import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
-import { useAuth } from "../../context/AuthContext";
+﻿import {useEffect, useState} from "react";
+import {useNavigate, useParams} from "react-router-dom";
+import {useAuth} from "../../context/AuthContext";
 
 type StatusCode = "PROPOSITION" | "ACCEPTE" | "REFUSE";
 
@@ -42,8 +42,8 @@ interface FullTradeDetail {
 }
 
 export default function TradeDetailPage() {
-    const { token, trainerId } = useAuth();
-    const { tradeId } = useParams<{ tradeId: string }>();
+    const {token, trainerId} = useAuth();
+    const {tradeId} = useParams<{ tradeId: string }>();
     const navigate = useNavigate();
 
     const [trade, setTrade] = useState<FullTradeDetail | null>(null);
@@ -61,7 +61,7 @@ export default function TradeDetailPage() {
         try {
             // 1. Trade "brut" (ids uniquement)
             const res = await fetch(`http://localhost:8000/trades/${tradeId}`, {
-                headers: { Authorization: `Bearer ${token}` },
+                headers: {Authorization: `Bearer ${token}`},
             });
             if (!res.ok) throw new Error();
             const raw: RawTradeDetail = await res.json();
@@ -69,10 +69,10 @@ export default function TradeDetailPage() {
             // 2. Infos des dresseur·euse·s
             const [senderRes, receiverRes] = await Promise.all([
                 fetch(`http://localhost:8000/trainers/${raw.sender.id}`, {
-                    headers: { Authorization: `Bearer ${token}` },
+                    headers: {Authorization: `Bearer ${token}`},
                 }),
                 fetch(`http://localhost:8000/trainers/${raw.receiver.id}`, {
-                    headers: { Authorization: `Bearer ${token}` },
+                    headers: {Authorization: `Bearer ${token}`},
                 }),
             ]);
             if (!senderRes.ok || !receiverRes.ok) throw new Error();
@@ -82,7 +82,7 @@ export default function TradeDetailPage() {
             // 3. Détails des Pokémons
             const senderPokemonPromises = raw.sender.pokemons.map((id) =>
                 fetch(`http://localhost:8000/pokemons/${id}`, {
-                    headers: { Authorization: `Bearer ${token}` },
+                    headers: {Authorization: `Bearer ${token}`},
                 }).then((r) => {
                     if (!r.ok) throw new Error();
                     return r.json() as Promise<TradePokemon>;
@@ -90,7 +90,7 @@ export default function TradeDetailPage() {
             );
             const receiverPokemonPromises = raw.receiver.pokemons.map((id) =>
                 fetch(`http://localhost:8000/pokemons/${id}`, {
-                    headers: { Authorization: `Bearer ${token}` },
+                    headers: {Authorization: `Bearer ${token}`},
                 }).then((r) => {
                     if (!r.ok) throw new Error();
                     return r.json() as Promise<TradePokemon>;
@@ -135,7 +135,7 @@ export default function TradeDetailPage() {
                 `http://localhost:8000/trades/${trade.id}/${action}`,
                 {
                     method: "PATCH",
-                    headers: { Authorization: `Bearer ${token}` },
+                    headers: {Authorization: `Bearer ${token}`},
                 }
             );
             if (!res.ok) throw new Error();
@@ -212,7 +212,8 @@ export default function TradeDetailPage() {
     );
 
     return (
-        <main className="min-h-screen p-4 bg-gradient-to-b from-emerald-950 via-emerald-900 to-emerald-800 text-amber-100">
+        <main
+            className="min-h-screen p-4 bg-gradient-to-b from-emerald-950 via-emerald-900 to-emerald-800 text-amber-100">
             <div className="max-w-6xl mx-auto space-y-6">
                 <div className="flex items-center justify-between gap-4">
                     <h1 className="text-3xl font-extrabold text-amber-200">

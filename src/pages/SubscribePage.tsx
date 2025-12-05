@@ -1,5 +1,5 @@
-﻿import { useEffect, useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
+﻿import {useEffect, useRef, useState} from "react";
+import {useNavigate} from "react-router-dom";
 
 interface FormData {
     firstName: string;
@@ -35,7 +35,7 @@ export default function SubscribePage() {
     }, [error]);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setForm({ ...form, [e.target.name]: e.target.value });
+        setForm({...form, [e.target.name]: e.target.value});
     };
 
     const handleSubmit = async (e: React.FormEvent) => {
@@ -54,7 +54,7 @@ export default function SubscribePage() {
         try {
             const res = await fetch("http://localhost:8000/subscribe", {
                 method: "POST",
-                headers: { "Content-Type": "application/json" },
+                headers: {"Content-Type": "application/json"},
                 body: JSON.stringify(form),
             });
 

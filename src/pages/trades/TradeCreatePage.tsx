@@ -1,6 +1,6 @@
-﻿import { useEffect, useState } from "react";
-import { useNavigate, useSearchParams } from "react-router-dom";
-import { useAuth } from "../../context/AuthContext";
+﻿import {useEffect, useState} from "react";
+import {useNavigate, useSearchParams} from "react-router-dom";
+import {useAuth} from "../../context/AuthContext";
 
 interface Trainer {
     id: number;
@@ -18,7 +18,7 @@ interface Pokemon {
 }
 
 export default function TradeCreatePage() {
-    const { token, trainerId: currentTrainerId } = useAuth();
+    const {token, trainerId: currentTrainerId} = useAuth();
     const [searchParams] = useSearchParams();
     const navigate = useNavigate();
 
@@ -54,10 +54,10 @@ export default function TradeCreatePage() {
             try {
                 const [meRes, receiverRes] = await Promise.all([
                     fetch(`http://localhost:8000/trainers/${currentTrainerId}`, {
-                        headers: { Authorization: `Bearer ${token}` },
+                        headers: {Authorization: `Bearer ${token}`},
                     }),
                     fetch(`http://localhost:8000/trainers/${receiverId}`, {
-                        headers: { Authorization: `Bearer ${token}` },
+                        headers: {Authorization: `Bearer ${token}`},
                     }),
                 ]);
 
@@ -72,10 +72,10 @@ export default function TradeCreatePage() {
                 const [myPkmRes, recPkmRes] = await Promise.all([
                     fetch(
                         `http://localhost:8000/trainers/${currentTrainerId}/pokemons`,
-                        { headers: { Authorization: `Bearer ${token}` } }
+                        {headers: {Authorization: `Bearer ${token}`}}
                     ),
                     fetch(`http://localhost:8000/trainers/${receiverId}/pokemons`, {
-                        headers: { Authorization: `Bearer ${token}` },
+                        headers: {Authorization: `Bearer ${token}`},
                     }),
                 ]);
 
@@ -156,147 +156,148 @@ export default function TradeCreatePage() {
         return (
             <main
                 className="min-h-screen p-4 bg-emerald-950 text-amber-100"
-        aria-busy="true"
-        >
-        <h1 className="text-3xl font-extrabold mb-4">Nouvel échange</h1>
-        <p>Chargement…</p>
-        </main>
-    );
+                aria-busy="true"
+            >
+                <h1 className="text-3xl font-extrabold mb-4">Nouvel échange</h1>
+                <p>Chargement…</p>
+            </main>
+        );
     }
 
     if (error || !me || !receiver) {
         return (
             <main className="min-h-screen p-4 bg-emerald-950 text-amber-100">
-            <h1 className="text-3xl font-extrabold mb-4">Nouvel échange</h1>
-        <p role="alert" className="text-red-200 mb-4">
-            {error ?? "Impossible d'initialiser l'échange."}
-        </p>
-        <button
-        type="button"
-        onClick={() => navigate(-1)}
-        className="bg-emerald-900 border border-amber-500 text-amber-100 px-4 py-2 rounded-full font-semibold hover:bg-emerald-800 focus:outline-none focus:ring-2 focus:ring-amber-300"
-            >
-            Retour
-            </button>
+                <h1 className="text-3xl font-extrabold mb-4">Nouvel échange</h1>
+                <p role="alert" className="text-red-200 mb-4">
+                    {error ?? "Impossible d'initialiser l'échange."}
+                </p>
+                <button
+                    type="button"
+                    onClick={() => navigate(-1)}
+                    className="bg-emerald-900 border border-amber-500 text-amber-100 px-4 py-2 rounded-full font-semibold hover:bg-emerald-800 focus:outline-none focus:ring-2 focus:ring-amber-300"
+                >
+                    Retour
+                </button>
             </main>
-    );
+        );
     }
 
     return (
-        <main className="min-h-screen p-4 bg-gradient-to-b from-emerald-950 via-emerald-900 to-emerald-800 text-amber-100">
-        <div className="max-w-6xl mx-auto space-y-6">
-        <h1 className="text-3xl font-extrabold text-amber-200 mb-2">
-            Créer un échange
-    </h1>
+        <main
+            className="min-h-screen p-4 bg-gradient-to-b from-emerald-950 via-emerald-900 to-emerald-800 text-amber-100">
+            <div className="max-w-6xl mx-auto space-y-6">
+                <h1 className="text-3xl font-extrabold text-amber-200 mb-2">
+                    Créer un échange
+                </h1>
 
-    {/* Moi */}
-    <section
-        aria-labelledby="me-section-title"
-    className="bg-emerald-950/80 border border-emerald-700 rounded-xl p-4"
-    >
-    <h2
-        id="me-section-title"
-    className="text-xl font-bold text-amber-200 mb-2"
-        >
-        Mes Pokémons
-    </h2>
-    <p className="mb-2">
-        {me.firstName} {me.lastName} — {me.login}
-    </p>
-    <p className="mb-2 text-sm text-amber-300">
-        Sélectionnez jusqu'à 6 Pokémons à proposer.
-    </p>
-
-    <div className="grid gap-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-        {myPokemons.map((p) => {
-                    const selected = mySelected.includes(p.id);
-                    return (
-                        <button
-                            key={p.id}
-                    type="button"
-                    onClick={() => toggleMyPokemon(p.id)}
-                    className={`text-left px-3 py-2 rounded-lg border text-sm transition 
-                    ${
-                        selected
-                            ? "bg-amber-300 text-emerald-950 border-amber-400"
-                            : "bg-emerald-900/80 text-amber-100 border-emerald-700 hover:bg-emerald-800"
-                    }`}
-                    aria-pressed={selected}
+                {/* Moi */}
+                <section
+                    aria-labelledby="me-section-title"
+                    className="bg-emerald-950/80 border border-emerald-700 rounded-xl p-4"
+                >
+                    <h2
+                        id="me-section-title"
+                        className="text-xl font-bold text-amber-200 mb-2"
                     >
-                    <div className="font-semibold">
-                        {p.name} ({p.species})
-                        </div>
-                        <div>Nv {p.level}</div>
-                    {p.isShiny && <div>✨ Shiny</div>}
-                    </button>
-                    );
-                    })}
-                </div>
+                        Mes Pokémons
+                    </h2>
+                    <p className="mb-2">
+                        {me.firstName} {me.lastName} — {me.login}
+                    </p>
+                    <p className="mb-2 text-sm text-amber-300">
+                        Sélectionnez jusqu'à 6 Pokémons à proposer.
+                    </p>
+
+                    <div className="grid gap-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+                        {myPokemons.map((p) => {
+                            const selected = mySelected.includes(p.id);
+                            return (
+                                <button
+                                    key={p.id}
+                                    type="button"
+                                    onClick={() => toggleMyPokemon(p.id)}
+                                    className={`text-left px-3 py-2 rounded-lg border text-sm transition 
+                    ${
+                                        selected
+                                            ? "bg-amber-300 text-emerald-950 border-amber-400"
+                                            : "bg-emerald-900/80 text-amber-100 border-emerald-700 hover:bg-emerald-800"
+                                    }`}
+                                    aria-pressed={selected}
+                                >
+                                    <div className="font-semibold">
+                                        {p.name} ({p.species})
+                                    </div>
+                                    <div>Nv {p.level}</div>
+                                    {p.isShiny && <div>✨ Shiny</div>}
+                                </button>
+                            );
+                        })}
+                    </div>
                 </section>
 
-    {/* Receveur */}
-    <section
-        aria-labelledby="receiver-section-title"
-    className="bg-emerald-950/80 border border-emerald-700 rounded-xl p-4"
-    >
-    <h2
-        id="receiver-section-title"
-    className="text-xl font-bold text-amber-200 mb-2"
-        >
-        Pokémons de {receiver.login}
-    </h2>
-    <p className="mb-2">
-        {receiver.firstName} {receiver.lastName} — {receiver.login}
-    </p>
-    <p className="mb-2 text-sm text-amber-300">
-        Sélectionnez jusqu'à 6 Pokémons que vous souhaitez recevoir.
-    </p>
-
-    <div className="grid gap-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-        {receiverPokemons.map((p) => {
-                    const selected = receiverSelected.includes(p.id);
-                    return (
-                        <button
-                            key={p.id}
-                    type="button"
-                    onClick={() => toggleReceiverPokemon(p.id)}
-                    className={`text-left px-3 py-2 rounded-lg border text-sm transition 
-                    ${
-                        selected
-                            ? "bg-amber-300 text-emerald-950 border-amber-400"
-                            : "bg-emerald-900/80 text-amber-100 border-emerald-700 hover:bg-emerald-800"
-                    }`}
-                    aria-pressed={selected}
+                {/* Receveur */}
+                <section
+                    aria-labelledby="receiver-section-title"
+                    className="bg-emerald-950/80 border border-emerald-700 rounded-xl p-4"
+                >
+                    <h2
+                        id="receiver-section-title"
+                        className="text-xl font-bold text-amber-200 mb-2"
                     >
-                    <div className="font-semibold">
-                        {p.name} ({p.species})
-                        </div>
-                        <div>Nv {p.level}</div>
-                    {p.isShiny && <div>✨ Shiny</div>}
-                    </button>
-                    );
-                    })}
-                </div>
+                        Pokémons de {receiver.login}
+                    </h2>
+                    <p className="mb-2">
+                        {receiver.firstName} {receiver.lastName} — {receiver.login}
+                    </p>
+                    <p className="mb-2 text-sm text-amber-300">
+                        Sélectionnez jusqu'à 6 Pokémons que vous souhaitez recevoir.
+                    </p>
+
+                    <div className="grid gap-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+                        {receiverPokemons.map((p) => {
+                            const selected = receiverSelected.includes(p.id);
+                            return (
+                                <button
+                                    key={p.id}
+                                    type="button"
+                                    onClick={() => toggleReceiverPokemon(p.id)}
+                                    className={`text-left px-3 py-2 rounded-lg border text-sm transition 
+                    ${
+                                        selected
+                                            ? "bg-amber-300 text-emerald-950 border-amber-400"
+                                            : "bg-emerald-900/80 text-amber-100 border-emerald-700 hover:bg-emerald-800"
+                                    }`}
+                                    aria-pressed={selected}
+                                >
+                                    <div className="font-semibold">
+                                        {p.name} ({p.species})
+                                    </div>
+                                    <div>Nv {p.level}</div>
+                                    {p.isShiny && <div>✨ Shiny</div>}
+                                </button>
+                            );
+                        })}
+                    </div>
                 </section>
 
-    {/* Bouton envoyer */}
-    <div className="flex justify-end">
-    <button
-        type="button"
-    onClick={handleSubmit}
-    disabled={
-            submitting ||
-        mySelected.length === 0 ||
-        receiverSelected.length === 0
-}
-    className="px-5 py-2 rounded-full bg-amber-300 text-emerald-950 font-bold border-2 border-amber-600 hover:bg-amber-200 focus:outline-none focus:ring-2 focus:ring-amber-300 disabled:opacity-60"
-    >
-    {submitting
-        ? "Envoi de la proposition…"
-        : "Envoyer la proposition d’échange"}
-    </button>
-    </div>
-    </div>
-    </main>
-);
+                {/* Bouton envoyer */}
+                <div className="flex justify-end">
+                    <button
+                        type="button"
+                        onClick={handleSubmit}
+                        disabled={
+                            submitting ||
+                            mySelected.length === 0 ||
+                            receiverSelected.length === 0
+                        }
+                        className="px-5 py-2 rounded-full bg-amber-300 text-emerald-950 font-bold border-2 border-amber-600 hover:bg-amber-200 focus:outline-none focus:ring-2 focus:ring-amber-300 disabled:opacity-60"
+                    >
+                        {submitting
+                            ? "Envoi de la proposition…"
+                            : "Envoyer la proposition d’échange"}
+                    </button>
+                </div>
+            </div>
+        </main>
+    );
 }

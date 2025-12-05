@@ -1,6 +1,6 @@
-﻿import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
-import { useAuth } from "../../context/AuthContext";
+﻿import {useEffect, useState} from "react";
+import {useNavigate, useParams} from "react-router-dom";
+import {useAuth} from "../../context/AuthContext";
 
 interface PokemonInBox {
     id: number;
@@ -23,8 +23,8 @@ interface SimpleBox {
 }
 
 export default function BoxDetailPage() {
-    const { token, trainerId } = useAuth();
-    const { boxId } = useParams<{ boxId: string }>();
+    const {token, trainerId} = useAuth();
+    const {boxId} = useParams<{ boxId: string }>();
     const navigate = useNavigate();
 
     const [box, setBox] = useState<BoxDetail | null>(null);
@@ -91,7 +91,7 @@ export default function BoxDetailPage() {
                 `http://localhost:8000/trainers/${trainerId}/boxes/${box.id}`,
                 {
                     method: "DELETE",
-                    headers: { Authorization: `Bearer ${token}` },
+                    headers: {Authorization: `Bearer ${token}`},
                 }
             );
             if (!res.ok) throw new Error();
@@ -115,13 +115,13 @@ export default function BoxDetailPage() {
                         Authorization: `Bearer ${token}`,
                         "Content-Type": "application/json",
                     },
-                    body: JSON.stringify({ name: newName.trim() }),
+                    body: JSON.stringify({name: newName.trim()}),
                 }
             );
 
             if (!res.ok) throw new Error();
 
-            setBox({ ...box, name: newName.trim() });
+            setBox({...box, name: newName.trim()});
             setIsRenaming(false);
         } catch {
             setError("Impossible de renommer cette boîte pour le moment.");
@@ -143,7 +143,7 @@ export default function BoxDetailPage() {
             const res = await fetch(
                 `http://localhost:8000/trainers/${trainerId}/boxes`,
                 {
-                    headers: { Authorization: `Bearer ${token}` },
+                    headers: {Authorization: `Bearer ${token}`},
                 }
             );
             if (!res.ok) throw new Error();
@@ -191,7 +191,7 @@ export default function BoxDetailPage() {
                                 Authorization: `Bearer ${token}`,
                                 "Content-Type": "application/json",
                             },
-                            body: JSON.stringify({ boxId: dest }),
+                            body: JSON.stringify({boxId: dest}),
                         }
                     );
                     if (!res.ok) {
@@ -207,7 +207,7 @@ export default function BoxDetailPage() {
             const boxRes = await fetch(
                 `http://localhost:8000/trainers/${trainerId}/boxes/${box.id}`,
                 {
-                    headers: { Authorization: `Bearer ${token}` },
+                    headers: {Authorization: `Bearer ${token}`},
                 }
             );
             if (!boxRes.ok) throw new Error();
@@ -241,7 +241,8 @@ export default function BoxDetailPage() {
 
     if (error || !box) {
         return (
-            <main className="min-h-screen p-4 bg-gradient-to-b from-emerald-950 via-emerald-900 to-emerald-800 text-amber-100">
+            <main
+                className="min-h-screen p-4 bg-gradient-to-b from-emerald-950 via-emerald-900 to-emerald-800 text-amber-100">
                 <h1 className="text-3xl font-extrabold mb-4 text-amber-200">
                     Coffre d&apos;Hyrule
                 </h1>
@@ -260,7 +261,8 @@ export default function BoxDetailPage() {
     }
 
     return (
-        <main className="min-h-screen p-4 bg-gradient-to-b from-emerald-950 via-emerald-900 to-emerald-800 text-amber-100">
+        <main
+            className="min-h-screen p-4 bg-gradient-to-b from-emerald-950 via-emerald-900 to-emerald-800 text-amber-100">
             <div className="max-w-6xl mx-auto space-y-6">
                 {/* Titre + Retour */}
                 <div className="flex items-center justify-between gap-4">
@@ -386,7 +388,8 @@ export default function BoxDetailPage() {
 
                                             {p.isShiny && (
                                                 <div className="flex justify-center mb-2">
-                          <span className="px-2 py-0.5 bg-yellow-400/20 text-yellow-300 text-xs font-bold rounded-full border border-yellow-400/50">
+                          <span
+                              className="px-2 py-0.5 bg-yellow-400/20 text-yellow-300 text-xs font-bold rounded-full border border-yellow-400/50">
                             ✨ Shiny
                           </span>
                                                 </div>
@@ -396,7 +399,8 @@ export default function BoxDetailPage() {
                         <span className="font-bold text-lg text-amber-200 truncate">
                           {p.name}
                         </span>
-                                                <span className="text-sm bg-emerald-800/60 px-2 py-1 rounded-full text-amber-300 font-semibold">
+                                                <span
+                                                    className="text-sm bg-emerald-800/60 px-2 py-1 rounded-full text-amber-300 font-semibold">
                           Nv {p.level}
                         </span>
                                             </div>

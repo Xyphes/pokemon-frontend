@@ -1,6 +1,6 @@
-﻿import { useEffect, useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { useAuth } from "../context/AuthContext";
+﻿import {useEffect, useRef, useState} from "react";
+import {useNavigate} from "react-router-dom";
+import {useAuth} from "../context/AuthContext";
 
 interface LoginForm {
     login: string;
@@ -9,9 +9,9 @@ interface LoginForm {
 
 export default function LoginPage() {
     const navigate = useNavigate();
-    const { login } = useAuth();
+    const {login} = useAuth();
 
-    const [form, setForm] = useState<LoginForm>({ login: "", password: "" });
+    const [form, setForm] = useState<LoginForm>({login: "", password: ""});
     const [error, setError] = useState<string | null>(null);
     const [fieldError, setFieldError] = useState(false);
     const [loading, setLoading] = useState(false);
@@ -30,7 +30,7 @@ export default function LoginPage() {
     }, [error]);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setForm({ ...form, [e.target.name]: e.target.value });
+        setForm({...form, [e.target.name]: e.target.value});
     };
 
     const handleSubmit = async (e: React.FormEvent) => {
@@ -42,7 +42,7 @@ export default function LoginPage() {
         try {
             const res = await fetch("http://localhost:8000/login", {
                 method: "POST",
-                headers: { "Content-Type": "application/json" },
+                headers: {"Content-Type": "application/json"},
                 body: JSON.stringify(form),
             });
 

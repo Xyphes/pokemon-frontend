@@ -1,11 +1,11 @@
-﻿import { Link, NavLink, useNavigate } from "react-router-dom";
-import { useState } from "react";
-import { useAuth } from "../context/AuthContext";
+﻿import {Link, NavLink, useNavigate} from "react-router-dom";
+import {useState} from "react";
+import {useAuth} from "../context/AuthContext";
 
 export default function Header() {
     const [open, setOpen] = useState(false);
     const navigate = useNavigate();
-    const { logged, logout, trainerId } = useAuth();
+    const {logged, logout, trainerId} = useAuth();
 
     const handleLogout = () => {
         logout();
@@ -16,7 +16,8 @@ export default function Header() {
     const closeMenu = () => setOpen(false);
 
     return (
-        <header className=" top-0 left-0 right-0 z-40 bg-gradient-to-r from-emerald-900 via-emerald-800 to-emerald-900 text-amber-100 shadow-[0_4px_0_rgba(0,0,0,0.45)] border-b border-amber-700/40">
+        <header
+            className=" top-0 left-0 right-0 z-40 bg-gradient-to-r from-emerald-900 via-emerald-800 to-emerald-900 text-amber-100 shadow-[0_4px_0_rgba(0,0,0,0.45)] border-b border-amber-700/40">
             <div className="max-w-6xl mx-auto flex items-center justify-between px-4 py-3 md:py-4">
                 <Link
                     to="/"
@@ -40,10 +41,10 @@ export default function Header() {
                     aria-label="Navigation principale"
                 >
                     {logged && (
-                        <NavItem to="/boxes" label="Mes boîtes" onClick={closeMenu} />
+                        <NavItem to="/boxes" label="Mes boîtes" onClick={closeMenu}/>
                     )}
                     {logged && (
-                        <NavItem to="/trades" label="Mes échanges" onClick={closeMenu} />
+                        <NavItem to="/trades" label="Mes échanges" onClick={closeMenu}/>
                     )}
                     {logged && (
                         <NavItem
@@ -68,13 +69,13 @@ export default function Header() {
                     )}
 
                     {!logged && (
-                        <NavItem to="/login" label="Connexion" onClick={closeMenu} />
+                        <NavItem to="/login" label="Connexion" onClick={closeMenu}/>
                     )}
                     {!logged && (
-                        <NavItem to="/signup" label="Inscription" onClick={closeMenu} />
+                        <NavItem to="/signup" label="Inscription" onClick={closeMenu}/>
                     )}
 
-                    <NavItem to="/about" label="À propos" onClick={closeMenu} />
+                    <NavItem to="/about" label="À propos" onClick={closeMenu}/>
 
                     {logged && (
                         <button
@@ -119,10 +120,10 @@ export default function Header() {
                 aria-label="Navigation principale mobile"
             >
                 {logged && (
-                    <MobileNavItem to="/boxes" label="Mes boîtes" onClick={closeMenu} />
+                    <MobileNavItem to="/boxes" label="Mes boîtes" onClick={closeMenu}/>
                 )}
                 {logged && (
-                    <MobileNavItem to="/trades" label="Mes échanges" onClick={closeMenu} />
+                    <MobileNavItem to="/trades" label="Mes échanges" onClick={closeMenu}/>
                 )}
                 {logged && (
                     <MobileNavItem
@@ -147,13 +148,13 @@ export default function Header() {
                 )}
 
                 {!logged && (
-                    <MobileNavItem to="/login" label="Connexion" onClick={closeMenu} />
+                    <MobileNavItem to="/login" label="Connexion" onClick={closeMenu}/>
                 )}
                 {!logged && (
-                    <MobileNavItem to="/signup" label="Inscription" onClick={closeMenu} />
+                    <MobileNavItem to="/signup" label="Inscription" onClick={closeMenu}/>
                 )}
 
-                <MobileNavItem to="/about" label="À propos" onClick={closeMenu} />
+                <MobileNavItem to="/about" label="À propos" onClick={closeMenu}/>
 
                 {logged && (
                     <button
@@ -181,7 +182,7 @@ function NavItem({
         <NavLink
             to={to}
             onClick={onClick}
-            className={({ isActive }) =>
+            className={({isActive}) =>
                 `text-sm md:text-base font-semibold px-3 py-1.5 rounded-full border transition 
         ${
                     isActive
@@ -208,7 +209,7 @@ function MobileNavItem({
         <NavLink
             to={to}
             onClick={onClick}
-            className={({ isActive }) =>
+            className={({isActive}) =>
                 `block px-4 py-3 text-base border-b border-emerald-900 transition 
         ${
                     isActive
