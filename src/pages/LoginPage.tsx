@@ -1,6 +1,6 @@
-﻿import {useEffect, useRef, useState} from "react";
-import {useNavigate} from "react-router-dom";
-import {useAuth} from "../context/AuthContext";
+﻿import { useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
 interface LoginForm {
     login: string;
@@ -9,9 +9,9 @@ interface LoginForm {
 
 export default function LoginPage() {
     const navigate = useNavigate();
-    const {login} = useAuth();
+    const { login } = useAuth();
 
-    const [form, setForm] = useState<LoginForm>({login: "", password: ""});
+    const [form, setForm] = useState<LoginForm>({ login: "", password: "" });
     const [error, setError] = useState<string | null>(null);
     const [fieldError, setFieldError] = useState(false);
     const [loading, setLoading] = useState(false);
@@ -30,7 +30,7 @@ export default function LoginPage() {
     }, [error]);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setForm({...form, [e.target.name]: e.target.value});
+        setForm({ ...form, [e.target.name]: e.target.value });
     };
 
     const handleSubmit = async (e: React.FormEvent) => {
@@ -42,7 +42,7 @@ export default function LoginPage() {
         try {
             const res = await fetch("http://localhost:8000/login", {
                 method: "POST",
-                headers: {"Content-Type": "application/json"},
+                headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(form),
             });
 
@@ -51,7 +51,9 @@ export default function LoginPage() {
                 login(data.accessToken, data.trainerId);
                 navigate("/");
             } else if (res.status === 400 || res.status === 401) {
-                setError("Identifiants invalides. Vérifiez votre email et votre mot de passe.");
+                setError(
+                    "Identifiants invalides. Vérifiez votre email et votre mot de passe."
+                );
                 setFieldError(true);
             } else {
                 setError("Une erreur est survenue. Réessayez plus tard.");
@@ -63,15 +65,23 @@ export default function LoginPage() {
         }
     };
 
+    const errorId = error ? "login-error" : undefined;
+
     return (
-        <main className="flex justify-center items-center min-h-screen bg-gray-50 p-4">
+        <main
+            className="min-h-screen flex items-center justify-center bg-gradient-to-b from-emerald-950 via-emerald-900 to-emerald-800 p-4"
+            aria-label="Page de connexion"
+        >
             <form
                 onSubmit={handleSubmit}
-                className="w-full max-w-md bg-white p-6 rounded shadow"
+                className="w-full max-w-md bg-emerald-950/95 border-2 border-amber-500 rounded-2xl shadow-[0_0_0_3px_rgba(0,0,0,0.7)] px-6 py-7"
                 aria-labelledby="login-title"
-                aria-describedby={error ? "login-error" : undefined}
+                aria-describedby={errorId}
             >
-                <h1 id="login-title" className="text-2xl font-bold mb-4">
+                <h1
+                    id="login-title"
+                    className="text-2xl font-extrabold mb-4 text-center text-amber-200 tracking-wide"
+                >
                     Connexion
                 </h1>
 
@@ -79,7 +89,7 @@ export default function LoginPage() {
                     <div
                         ref={errorRef}
                         id="login-error"
-                        className="mb-4 text-red-700 bg-red-100 p-2 rounded"
+                        className="mb-4 text-amber-100 bg-red-900/70 border border-red-400 p-3 rounded-lg shadow-inner"
                         role="alert"
                         tabIndex={-1}
                         aria-live="assertive"
@@ -89,7 +99,7 @@ export default function LoginPage() {
                 )}
 
                 <div className="mb-4">
-                    <label htmlFor="login" className="block font-medium mb-1">
+                    <label htmlFor="login" className="block font-semibold mb-2 text-amber-100">
                         Adresse email
                     </label>
                     <input
@@ -100,14 +110,14 @@ export default function LoginPage() {
                         value={form.login}
                         onChange={handleChange}
                         required
-                        className="w-full border rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        className="w-full border-2 border-emerald-700 rounded-lg px-3 py-2 bg-emerald-950 text-amber-100 placeholder-emerald-400 focus:outline-none focus:ring-4 focus:ring-amber-300/70 focus:border-amber-400"
                         aria-invalid={fieldError}
-                        aria-describedby={error ? "login-error" : undefined}
+                        aria-describedby={errorId}
                     />
                 </div>
 
                 <div className="mb-6">
-                    <label htmlFor="password" className="block font-medium mb-1">
+                    <label htmlFor="password" className="block font-semibold mb-2 text-amber-100">
                         Mot de passe
                     </label>
                     <input
@@ -117,18 +127,21 @@ export default function LoginPage() {
                         value={form.password}
                         onChange={handleChange}
                         required
-                        className="w-full border rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        className="w-full border-2 border-emerald-700 rounded-lg px-3 py-2 bg-emerald-950 text-amber-100 placeholder-emerald-400 focus:outline-none focus:ring-4 focus:ring-amber-300/70 focus:border-amber-400"
                         aria-invalid={fieldError}
-                        aria-describedby={error ? "login-error" : undefined}
+                        aria-describedby={errorId}
                     />
                 </div>
 
                 <button
                     type="submit"
                     disabled={loading}
-                    className={`w-full bg-blue-600 text-white py-2 rounded font-semibold hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 ${
-                        loading ? "opacity-50 cursor-not-allowed" : ""
-                    }`}
+                    className={`w-full py-2.5 mt-2 rounded-full font-bold text-lg text-emerald-950 shadow-[0_4px_0_rgba(0,0,0,0.6)]
+          bg-gradient-to-r from-amber-300 to-amber-400 border-2 border-amber-700
+          hover:from-amber-200 hover:to-amber-300
+          focus:outline-none focus:ring-4 focus:ring-amber-300/70
+          active:translate-y-0.5 active:shadow-[0_2px_0_rgba(0,0,0,0.6)]
+          ${loading ? "opacity-60 cursor-not-allowed" : ""}`}
                     aria-busy={loading}
                 >
                     {loading ? "Connexion..." : "Se connecter"}
